@@ -1,0 +1,146 @@
+[
+  {
+    "Naziv": "Angular Speedster Board 2000",
+    "Opis": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 200,
+    "SlikaUrl": "images/products/sb-ang1.png",
+    "ProizvodTipId": 1,
+    "ProizvodMarkaId": 1
+  },
+  {
+    "Naziv": "Green Angular Board 3000",
+    "Opis": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
+    "Price": 150,
+    "SlikaUrl": "images/products/sb-ang2.png",
+    "ProizvodTipId": 1,
+    "ProizvodMarkaId": 1
+  },
+  {
+    "Naziv": "Core Board Speed Rush 3",
+    "Opis": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 180,
+    "SlikaUrl": "images/products/sb-core1.png",
+    "ProizvodTipId": 1,
+    "ProizvodMarkaId": 2
+  },
+  {
+    "Naziv": "Net Core Super Board",
+    "Opis": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 300,
+    "SlikaUrl": "images/products/sb-core2.png",
+    "ProizvodTipId": 1,
+    "ProizvodMarkaId": 2
+  },
+  {
+    "Naziv": "React Board Super Whizzy Fast",
+    "Opis": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 250,
+    "SlikaUrl": "images/products/sb-react1.png",
+    "ProizvodTipId": 1,
+    "ProizvodMarkaId": 4
+  },
+  {
+    "Naziv": "Typescript Entry Board",
+    "Opis": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 120,
+    "SlikaUrl": "images/products/sb-ts1.png",
+    "ProizvodTipId": 1,
+    "ProizvodMarkaId": 5
+  },
+  {
+    "Naziv": "Core Blue Hat",
+    "Opis": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 10,
+    "SlikaUrl": "images/products/hat-core1.png",
+    "ProizvodTipId": 2,
+    "ProizvodMarkaId": 2
+  },
+  {
+    "Naziv": "Green React Woolen Hat",
+    "Opis": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 8,
+    "SlikaUrl": "images/products/hat-react1.png",
+    "ProizvodTipId": 2,
+    "ProizvodMarkaId": 4
+  },
+  {
+    "Naziv": "Purple React Woolen Hat",
+    "Opis": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 15,
+    "SlikaUrl": "images/products/hat-react2.png",
+    "ProizvodTipId": 2,
+    "ProizvodMarkaId": 4
+  },
+  {
+    "Naziv": "Blue Code Gloves",
+    "Opis": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
+    "Price": 18,
+    "SlikaUrl": "images/products/glove-code1.png",
+    "ProizvodTipId": 4,
+    "ProizvodMarkaId": 3
+  },
+  {
+    "Naziv": "Green Code Gloves",
+    "Opis": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 15,
+    "SlikaUrl": "images/products/glove-code2.png",
+    "ProizvodTipId": 4,
+    "ProizvodMarkaId": 3
+  },
+  {
+    "Naziv": "Purple React Gloves",
+    "Opis": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
+    "Price": 16,
+    "SlikaUrl": "images/products/glove-react1.png",
+    "ProizvodTipId": 4,
+    "ProizvodMarkaId": 4
+  },
+  {
+    "Naziv": "Green React Gloves",
+    "Opis": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 14,
+    "SlikaUrl": "images/products/glove-react2.png",
+    "ProizvodTipId": 4,
+    "ProizvodMarkaId": 4
+  },
+  {
+    "Naziv": "Redis Red Boots",
+    "Opis": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 250,
+    "SlikaUrl": "images/products/boot-redis1.png",
+    "ProizvodTipId": 3,
+    "ProizvodMarkaId": 6
+  },
+  {
+    "Naziv": "Core Red Boots",
+    "Opis": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 189.99,
+    "SlikaUrl": "images/products/boot-core2.png",
+    "ProizvodTipId": 3,
+    "ProizvodMarkaId": 2
+  },
+  {
+    "Naziv": "Core Purple Boots",
+    "Opis": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 199.99,
+    "SlikaUrl": "images/products/boot-core1.png",
+    "ProizvodTipId": 3,
+    "ProizvodMarkaId": 2
+  },
+  {
+    "Naziv": "Angular Purple Boots",
+    "Opis": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 150,
+    "SlikaUrl": "images/products/boot-ang2.png",
+    "ProizvodTipId": 3,
+    "ProizvodMarkaId": 1
+  },
+  {
+    "Naziv": "Angular Blue Boots",
+    "Opis": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 180,
+    "SlikaUrl": "images/products/boot-ang1.png",
+    "ProizvodTipId": 3,
+    "ProizvodMarkaId": 1
+  }
+]

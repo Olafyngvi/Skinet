@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Naziv": "Boards"
+  },
+  {
+    "Id": 2,
+    "Naziv": "Hats"
+  },
+  {
+    "Id": 3,
+    "Naziv": "Boots"
+  },
+  {
+    "Id": 4,
+    "Naziv": "Gloves"
+  }
+]
