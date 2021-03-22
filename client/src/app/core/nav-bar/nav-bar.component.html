@@ -70,6 +70,13 @@
           >
             <i class="fa fa-history mr-3"></i> View Orders
           </a>
+          <a
+            *ngIf="isAdmin$ | async"
+            routerLink="/users"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+          <i class="fa fa-user mr-3"></i>View all users
+          </a>
           <div class="dropdown-divider"></div>
           <a
             (click)="logout()"

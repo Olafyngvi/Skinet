@@ -12,6 +12,11 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
+  getUsers() {
+    return this.http.get(this.baseUrl + 'Account/users');
+  }
+
+  // tslint:disable-next-line: typedef
   createProduct(product: ProductFormValues) {
     return this.http.post(this.baseUrl + 'products', product);
   }

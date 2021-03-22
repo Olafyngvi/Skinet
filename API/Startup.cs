@@ -41,6 +41,9 @@ namespace API
             });
             services.AddApplicationServices();
             services.AddIdentityServices(_config);
+            services.AddSwaggerGen(options => {
+                options.CustomSchemaIds(type => type.ToString());
+            });
             services.AddSwaggerDocumentation();
             services.AddCors(opt =>
             {

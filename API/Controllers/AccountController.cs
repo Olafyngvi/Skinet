@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dtos;
@@ -9,6 +11,7 @@ using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -25,6 +28,29 @@ namespace API.Controllers
             _tokenService = tokenService;
             _signInManager = signInManager;
             _userManager = userManager;
+        }
+
+        [HttpGet("users")]
+        [Authorize(Roles = "Admin")]
+        public async Task<List<AllUsersDto>> GetUsers()
+        {,
+            List<AllUsersDto> usersReturn = new List<AllUsersDto>();
+            return await Task.Run(() => {
+                foreach(var user in _userManager.Users.Include(x => x.Address))
+                {
+                    var temp  = new AllUsersDto
+                    {
+                        DisplayName = user.DisplayName,
+                        Email = user.Email,
+                        FirstName = user.Address?.FirstName,
+                        LastName = user.Address?.LastName,
+                        Address = user.Address?.Street + " " + user.Address?.City
+                        
+                    };
+                    usersReturn.Add(temp);
+                }
+                return usersReturn;
+            });
         }
 
         [Authorize]

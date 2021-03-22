@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-12">
+          <table class="table table-hover" style="cursor: pointer;">
+              <thead class="thead-light">
+                  <tr>
+                      <th>Display Name</th>
+                      <th>Email</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Address</th>
+                      <th>Orders</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let user of users" routerLink="/orders/{{user.email}}">
+                      <th>{{user.displayName}}</th>
+                      <td>{{user.email}}</td>
+                      <td>{{user.firstName}}</td>
+                      <td>{{user.lastName}}</td>
+                      <td>{{user.address}}</td>
+                      <td class="align-middle justify-content-between">
+                        <button
+                          [routerLink]="['edit', user.email]"
+                          class="btn btn-primary"
+                        >
+                          Orders
+                        </button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
