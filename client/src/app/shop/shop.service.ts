@@ -23,6 +23,7 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
+  // tslint:disable-next-line: typedef
   getProducts(useCache: boolean) {
     if (useCache === false) {
       this.productCache = new Map();
@@ -38,15 +39,15 @@ export class ShopService {
     let params = new HttpParams();
 
     if (this.shopParams.brandId !== 0) {
-      params = params.append('brandId', this.shopParams.brandId.toString())
+      params = params.append('brandId', this.shopParams.brandId.toString());
     }
 
     if (this.shopParams.typeId !== 0) {
-      params = params.append('typeId', this.shopParams.typeId.toString())
+      params = params.append('typeId', this.shopParams.typeId.toString());
     }
 
     if (this.shopParams.search) {
-      params = params.append('search', this.shopParams.search)
+      params = params.append('search', this.shopParams.search);
     }
 
     params = params.append('sort', this.shopParams.sort);
@@ -60,23 +61,26 @@ export class ShopService {
           this.pagination = response.body;
           return this.pagination;
         })
-      )
+      );
   }
 
+  // tslint:disable-next-line: typedef
   setShopParams(params: ShopParams) {
     this.shopParams = params;
   }
 
+  // tslint:disable-next-line: typedef
   getShopParams() {
     return this.shopParams;
   }
 
+  // tslint:disable-next-line: typedef
   getProduct(id: number) {
     let product: IProduct;
     this.productCache.forEach((products: IProduct[]) => {
       console.log(product);
       product = products.find(p => p.id === id);
-    })
+    });
 
     if (product) {
       return of(product);
@@ -85,6 +89,7 @@ export class ShopService {
     return this.http.get<IProduct>(this.baseUrl + 'products/' + id);
   }
 
+  // tslint:disable-next-line: typedef
   getBrands() {
     if (this.brands.length > 0) {
       return of(this.brands);
@@ -94,9 +99,10 @@ export class ShopService {
         this.brands = response;
         return response;
       })
-    )
+    );
   }
 
+  // tslint:disable-next-line: typedef
   getTypes() {
     if (this.types.length > 0) {
       return of(this.types);
@@ -106,6 +112,6 @@ export class ShopService {
         this.types = response;
         return response;
       })
-    )
+    );
   }
 }

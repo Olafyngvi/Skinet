@@ -14,6 +14,10 @@ namespace API.Helpers
                 .ForMember(d => d.ProductBrand, o => o.MapFrom(s => s.ProductBrand.Name))
                 .ForMember(d => d.ProductType, o => o.MapFrom(s => s.ProductType.Name))
                 .ForMember(d => d.PictureUrl, o => o.MapFrom<ProductUrlResolver>());
+            CreateMap<AppUser, AllUsersDto>()
+                .ForMember(d => d.FirstName, o => o.MapFrom(s => s.Address.FirstName))
+                .ForMember(d => d.LastName, o => o.MapFrom(s => s.Address.LastName))
+                .ForMember(d => d.Address, o => o.MapFrom(s => s.Address.Street + " " +s.Address.City));
             CreateMap<Core.Entities.Identity.Address, AddressDto>().ReverseMap();
             CreateMap<CustomerBasketDto, CustomerBasket>();
             CreateMap<BasketItemDto, BasketItem>();

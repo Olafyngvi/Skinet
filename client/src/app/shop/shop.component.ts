@@ -21,9 +21,9 @@ export class ShopComponent implements OnInit {
     {name: 'Alphabetical', value: 'name'},
     {name: 'Price: Low to high', value: 'priceAsc'},
     {name: 'Price: High to low', value: 'priceDesc'},
-  ]
+  ];
 
-  constructor(private shopService: ShopService) { 
+  constructor(private shopService: ShopService) {
     this.shopParams = this.shopService.getShopParams();
   }
 
@@ -32,32 +32,39 @@ export class ShopComponent implements OnInit {
     this.getBrands();
     this.getTypes();
   }
-  
+
+  // tslint:disable-next-line: typedef
   getProducts(useCache = false) {
+    // tslint:disable-next-line: deprecation
     this.shopService.getProducts(useCache).subscribe(response => {
       this.products = response.data;
       this.totalCount = response.count;
     }, error => {
       console.log(error);
-    })
+    });
   }
 
+  // tslint:disable-next-line: typedef
   getBrands() {
+    // tslint:disable-next-line: deprecation
     this.shopService.getBrands().subscribe(response => {
       this.brands = [{id: 0, name: 'All'}, ...response];
     }, error => {
       console.log(error);
-    })
+    });
   }
 
+  // tslint:disable-next-line: typedef
   getTypes() {
+    // tslint:disable-next-line: deprecation
     this.shopService.getTypes().subscribe(response => {
       this.types = [{id: 0, name: 'All'}, ...response];
     }, error => {
       console.log(error);
-    })
+    });
   }
 
+  // tslint:disable-next-line: typedef
   onBrandSelected(brandId: number) {
     const params = this.shopService.getShopParams();
     params.brandId = brandId;
@@ -66,6 +73,7 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
+  // tslint:disable-next-line: typedef
   onTypeSelected(typeId: number) {
     const params = this.shopService.getShopParams();
     params.typeId = typeId;
@@ -74,6 +82,7 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
+  // tslint:disable-next-line: typedef
   onSortSelected(sort: string) {
     const params = this.shopService.getShopParams();
     params.sort = sort;
@@ -81,6 +90,7 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
+  // tslint:disable-next-line: typedef
   onPageChanged(event: any) {
     const params = this.shopService.getShopParams();
     if (params.pageNumber !== event) {
@@ -90,6 +100,7 @@ export class ShopComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line: typedef
   onSearch() {
     const params = this.shopService.getShopParams();
     params.search = this.searchTerm.nativeElement.value;
@@ -98,6 +109,7 @@ export class ShopComponent implements OnInit {
     this.getProducts();
   }
 
+  // tslint:disable-next-line: typedef
   onReset() {
     this.searchTerm.nativeElement.value = '';
     this.shopParams = new ShopParams();

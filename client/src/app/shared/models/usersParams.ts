@@ -1,6 +1,4 @@
-export class ShopParams {
-    brandId = 0;
-    typeId = 0;
+export class UsersParams {
     sort = 'name';
     pageNumber = 1;
     pageSize = 6;

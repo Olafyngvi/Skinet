@@ -1,19 +1,50 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { IPagination, Pagination } from '../shared/models/pagination';
 import { ProductFormValues } from '../shared/models/product';
+import { UsersParams } from '../shared/models/usersParams';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
   baseUrl = environment.apiUrl;
+  pagination = new Pagination();
+  usersParams = new UsersParams();
 
   constructor(private http: HttpClient) {}
 
   // tslint:disable-next-line: typedef
   getUsers() {
-    return this.http.get(this.baseUrl + 'Account/users');
+    let params = new HttpParams();
+
+    if (this.usersParams.search) {
+      params = params.append('search', this.usersParams.search);
+    }
+
+    params = params.append('sort', this.usersParams.sort);
+    params = params.append('pageIndex', this.usersParams.pageNumber.toString());
+    params = params.append('pageSize', this.usersParams.pageSize.toString());
+
+    return this.http.get<IPagination>(this.baseUrl + 'Account/users', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          this.pagination = response.body;
+          return this.pagination;
+        })
+      );
+    // return this.http.get(this.baseUrl + 'Account/users');
+  }
+  // tslint:disable-next-line: typedef
+  setUsersParams(params: UsersParams) {
+    this.usersParams = params;
+  }
+
+  // tslint:disable-next-line: typedef
+  getUsersParams() {
+    return this.usersParams;
   }
 
   // tslint:disable-next-line: typedef
