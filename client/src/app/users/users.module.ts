@@ -4,6 +4,7 @@ import { UsersComponent } from './users.component';
 import { SharedModule } from '../shared/shared.module';
 import { UsersRoutingModule } from './users-routing.module';
 import { OrdersByUserComponent } from './orders-by-user/orders-by-user.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 
 
@@ -12,7 +13,8 @@ import { OrdersByUserComponent } from './orders-by-user/orders-by-user.component
   imports: [
     CommonModule,
     SharedModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    AccordionModule
   ]
 })
 export class UsersModule { }

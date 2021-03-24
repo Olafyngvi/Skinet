@@ -1,43 +1,118 @@
 <div class="container mt-5">
   <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <div class="col-4">
-            <select class="custom-select mt-2" (change)="onSortSelected($event.target.value)">
-              <option *ngFor="let sort of sortOptions"
-                  [selected]="usersParams.sort === sort.value"
-                  [value]="sort.value">
-                  {{sort.name}}
-              </option>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-4">
+          <select
+            class="custom-select mt-3"
+            (change)="onSortSelected($event.target.value)"
+          >
+            <option
+              *ngFor="let sort of sortOptions"
+              [selected]="usersParams.sort === sort.value"
+              [value]="sort.value"
+            >
+              {{ sort.name }}
+            </option>
           </select>
-          </div>
-          <div class="col-8">
-            <div class="d-flex justify-content-between align-items-center pb-2">
-              <app-paging-header [totalCount]="totalCount" [pageNumber]="usersParams.pageNumber"
-                  [pageSize]="usersParams.pageSize"></app-paging-header>
+        </div>
+        <div class="col-8">
+          <div class="d-flex justify-content-between align-items-center pb-2">
+            <app-paging-header
+              [totalCount]="totalCount"
+              [pageNumber]="usersParams.pageNumber"
+              [pageSize]="usersParams.pageSize"
+            ></app-paging-header>
 
-              <div class="form-inline mt-2" *ngIf="users">
-                  <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Search">
-                  <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
-                  <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
-              </div>
-          </div>
+            <div class="form-inline mt-2" *ngIf="users">
+              <input
+                (keyup.enter)="onSearch()"
+                type="text"
+                class="form-control mr-2"
+                #search
+                placeholder="Search"
+              />
+              <button (click)="onSearch()" class="btn btn-outline-primary my-2">
+                Search
+              </button>
+              <button
+                (click)="onReset()"
+                class="btn btn-outline-success ml-2 my-2"
+              >
+                Reset
+              </button>
+            </div>
           </div>
         </div>
-          <table class="table table-hover" style="cursor: pointer;">
-              <thead class="thead-light">
-                  <tr>
-                      <th>Display Name</th>
-                      <th>Email</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Address</th>
-                      <th>Orders</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let user of users" routerLink="/orders/{{user.email}}">
-                      <th>{{user.displayName}}</th>
+      </div>
+      <div class="d-flex justify-content-around mt-5 mb-3 px-4">
+        <span class="flex-fill"><strong>Display name</strong></span>
+        <span class="flex-fill"><strong>Email</strong></span>
+        <span class="flex-fill"><strong>Address</strong></span>
+        <span><strong>Action</strong></span>
+      </div>
+      <div class="mb-5">
+        <ng-container *ngFor="let user of users">
+          <accordion [closeOthers]="true" [isAnimated]="true">
+            <accordion-group>
+              <div class="d-flex justify-content-around" accordion-heading>
+                <div class="flex-fill"><strong>{{ user.displayName }}</strong></div>
+                <div class="flex-fill">{{ user.email }}</div>
+                <div class="flex-fill">{{ user.address }}</div>
+                <div>
+                  <button
+                    [routerLink]="['edit', user.email]"
+                    class="btn btn-primary"
+                  >
+                    Orders
+                  </button>
+                </div>
+              </div>
+              <div class="">
+                <p>{{ user.firstName }}</p>
+                <p>{{ user.lastName }}</p>
+                <p>{{ user.address }}</p>
+                <p>{{ user.email }}</p>
+              </div>
+            </accordion-group>
+          </accordion>
+      </ng-container>
+      </div>
+
+          <!--<tr
+            *ngFor="let user of users"
+            class="accordion-toggle collapsed"
+            id="accordion1"
+            data-toggle="collapse"
+            data-parent="#accordion1"
+            href="#collapseOne"
+          >
+            <td>{{ user.displayName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.address }}</td>
+            <td class="align-middle justify-content-between">
+              <button
+                [routerLink]="['edit', user.email]"
+                class="btn btn-primary"
+              >
+                Orders
+              </button>
+            </td>
+          </tr>
+          <tr class="hide-table-padding">
+            <td></td>
+            <td colspan="3">
+              <div id="collapseOne" class="collapse in p-3">
+                <div class="row">
+                  <div class="col-2">label</div>
+                  <div class="col-6">value 1</div>
+                </div>
+              </div>
+            </td>
+          </tr>-->
+          <!--<td>{{user.displayName}}</td>
                       <td>{{user.email}}</td>
                       <td>{{user.firstName}}</td>
                       <td>{{user.lastName}}</td>
@@ -50,18 +125,16 @@
                           Orders
                         </button>
                       </td>
-                  </tr>
-              </tbody>
-          </table>
-          <div class="d-flex justify-content-center" *ngIf="totalCount > 0">
-            <app-pager
-                [pageSize]="usersParams.pageSize"
-                [totalCount]="totalCount"
-                [pageNumber]="usersParams.pageNumber"
-                (pageChanged)="onPageChanged($event)"
-            >
-            </app-pager>
-        </div>
+                    -->
+      <div class="d-flex justify-content-center" *ngIf="totalCount > 0">
+        <app-pager
+          [pageSize]="usersParams.pageSize"
+          [totalCount]="totalCount"
+          [pageNumber]="usersParams.pageNumber"
+          (pageChanged)="onPageChanged($event)"
+        >
+        </app-pager>
       </div>
+    </div>
   </div>
 </div>
