@@ -26,7 +26,8 @@ namespace Infrastructure.Identity
                             Street = "10 The Street",
                             City = "New York",
                             State = "NY",
-                            ZipCode = "90210"
+                            ZipCode = "90210",
+                            Phone = "062927158"
                         }
                     },
                     new AppUser

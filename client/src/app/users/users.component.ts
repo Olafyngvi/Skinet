@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from '../admin/admin.service';
 import { IUsers } from '../shared/models/users';
 import { UsersParams } from '../shared/models/usersParams';
@@ -10,6 +11,9 @@ import { UsersParams } from '../shared/models/usersParams';
 })
 export class UsersComponent implements OnInit {
   @ViewChild('search', { static: false }) searchTerm: ElementRef;
+  @Output() PlusClick = new EventEmitter<boolean>();
+  oneAtATime = true;
+  toggleOrders = false;
   users: IUsers[];
   usersParams: UsersParams;
   totalCount: number;
@@ -18,7 +22,8 @@ export class UsersComponent implements OnInit {
     { name: 'Alphabetical Descending', value: 'nameDesc' },
   ];
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService,
+              private router: Router) {
     this.usersParams = this.adminService.getUsersParams();
   }
 
@@ -73,5 +78,16 @@ export class UsersComponent implements OnInit {
     this.usersParams = new UsersParams();
     this.adminService.setUsersParams(this.usersParams);
     this.loadUsers();
+  }
+
+  // tslint:disable-next-line: typedef
+  orders(email: string, name: string) {
+    const Iemail = btoa(email);
+    const Iname = btoa(name);
+    this.router.navigate(['/orders/'], { queryParams: { email, name } });
+
+  }
+  btoa(word: string): string {
+    return btoa(word);
   }
 }

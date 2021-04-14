@@ -1,4 +1,4 @@
-import { IAddress } from "./address";
+import { IAddress } from './address';
 
 export interface IOrderToCreate {
     basketId: string;
@@ -18,8 +18,8 @@ export interface IOrder {
     status: string;
     total: number;
   }
-  
-  export interface IOrderItem {
+
+export interface IOrderItem {
     productId: number;
     productName: string;
     pictureUrl: string;

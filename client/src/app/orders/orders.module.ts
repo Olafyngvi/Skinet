@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     OrdersRoutingModule,
     SharedModule
-  ]
+  ],
+  exports: [ OrdersComponent ]
 })
 export class OrdersModule { }

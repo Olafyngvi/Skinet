@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UsersRoutingModule } from './users-routing.module';
 import { OrdersByUserComponent } from './orders-by-user/orders-by-user.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { OrdersModule } from '../orders/orders.module';
 
 
 
@@ -14,7 +15,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     CommonModule,
     SharedModule,
     UsersRoutingModule,
-    AccordionModule
+    AccordionModule,
+    OrdersModule
   ]
 })
 export class UsersModule { }

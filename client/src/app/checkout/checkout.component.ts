@@ -23,6 +23,7 @@ export class CheckoutComponent implements OnInit {
     this.basketTotals$ = this.basketService.basketTotal$;
   }
 
+  // tslint:disable-next-line: typedef
   createCheckoutForm() {
     this.checkoutForm = this.fb.group({
       addressForm: this.fb.group({
@@ -32,6 +33,7 @@ export class CheckoutComponent implements OnInit {
         city: [null, Validators.required],
         state: [null, Validators.required],
         zipCode: [null, Validators.required],
+        phone: [null, Validators.required],
       }),
       deliveryForm: this.fb.group({
         deliveryMethod: [null, Validators.required]
@@ -39,19 +41,22 @@ export class CheckoutComponent implements OnInit {
       paymentForm: this.fb.group({
         nameOnCard: [null, Validators.required]
       })
-    })
+    });
   }
 
+  // tslint:disable-next-line: typedef
   getAddressFormValues() {
+    // tslint:disable-next-line: deprecation
     this.accountService.getUserAddress().subscribe(address => {
       if (address) {
         this.checkoutForm.get('addressForm').patchValue(address);
       }
     }, error => {
       console.log(error);
-    })
+    });
   }
 
+  // tslint:disable-next-line: typedef
   getDeliveryMethodValue() {
     const basket = this.basketService.getCurrentBasketValue();
     if (basket.deliveryMethodId !== null) {

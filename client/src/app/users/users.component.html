@@ -45,88 +45,55 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-around mt-5 mb-3 px-4">
+      <div class="d-flex justify-content-between mt-5 mb-3 px-4">
         <span class="flex-fill"><strong>Display name</strong></span>
-        <span class="flex-fill"><strong>Email</strong></span>
+        <span class="flex-fill"><strong>Email address</strong></span>
         <span class="flex-fill"><strong>Address</strong></span>
-        <span><strong>Action</strong></span>
       </div>
       <div class="mb-5">
-        <ng-container *ngFor="let user of users">
-          <accordion [closeOthers]="true" [isAnimated]="true">
-            <accordion-group>
-              <div class="d-flex justify-content-around" accordion-heading>
+        <ng-container>
+          <accordion [closeOthers]="oneAtATime">
+            <accordion-group *ngFor="let user of users">
+              <div class="d-flex justify-content-between" accordion-heading>
                 <div class="flex-fill"><strong>{{ user.displayName }}</strong></div>
                 <div class="flex-fill">{{ user.email }}</div>
-                <div class="flex-fill">{{ user.address }}</div>
-                <div>
-                  <button
-                    [routerLink]="['edit', user.email]"
-                    class="btn btn-primary"
-                  >
-                    Orders
-                  </button>
-                </div>
+                <div *ngIf="user.address" class="flex-fill">{{ user.address }}</div>
+                <div *ngIf="!user.address" class="flex-fill">N/A</div>
               </div>
-              <div class="">
-                <p>{{ user.firstName }}</p>
-                <p>{{ user.lastName }}</p>
-                <p>{{ user.address }}</p>
-                <p>{{ user.email }}</p>
+              <div class="row">
+                <div *ngIf="user.address" class="col-2 border-right">
+                  <strong><p>Ime i prezime:</p></strong>
+                  <hr>
+                  <strong><p>Država:</p></strong>
+                  <hr>
+                  <strong><p>Telefon:</p></strong>
+                </div>
+                <div *ngIf="user.address" class="col-3">
+                  <p>{{ user.firstName }} {{ user.lastName }}</p>
+                  <hr>
+                  <p>{{ user.state }}</p>
+                  <hr>
+                  <p>{{ user.phone }}</p>
+                </div>
+                <div *ngIf="!user.address" class="col-2 border-right">
+                  <strong>No Address</strong>
+                </div>
+                <div *ngIf="!user.address" class="col-3">
+                </div>
+                  <div class="col-7">
+                    <button
+                      class="btn btn-primary pull-right"
+                      routerLink="/orders/{{btoa(user.email)}}/{{btoa(user.displayName)}}"
+                    >
+                      Orders
+                    </button>
+                </div>
               </div>
             </accordion-group>
           </accordion>
       </ng-container>
       </div>
-
-          <!--<tr
-            *ngFor="let user of users"
-            class="accordion-toggle collapsed"
-            id="accordion1"
-            data-toggle="collapse"
-            data-parent="#accordion1"
-            href="#collapseOne"
-          >
-            <td>{{ user.displayName }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-            <td>{{ user.address }}</td>
-            <td class="align-middle justify-content-between">
-              <button
-                [routerLink]="['edit', user.email]"
-                class="btn btn-primary"
-              >
-                Orders
-              </button>
-            </td>
-          </tr>
-          <tr class="hide-table-padding">
-            <td></td>
-            <td colspan="3">
-              <div id="collapseOne" class="collapse in p-3">
-                <div class="row">
-                  <div class="col-2">label</div>
-                  <div class="col-6">value 1</div>
-                </div>
-              </div>
-            </td>
-          </tr>-->
-          <!--<td>{{user.displayName}}</td>
-                      <td>{{user.email}}</td>
-                      <td>{{user.firstName}}</td>
-                      <td>{{user.lastName}}</td>
-                      <td>{{user.address}}</td>
-                      <td class="align-middle justify-content-between">
-                        <button
-                          [routerLink]="['edit', user.email]"
-                          class="btn btn-primary"
-                        >
-                          Orders
-                        </button>
-                      </td>
-                    -->
-      <div class="d-flex justify-content-center" *ngIf="totalCount > 0">
+      <div class="d-flex justify-content-center" *ngIf="totalCount > 0 && totalCount > 6">
         <app-pager
           [pageSize]="usersParams.pageSize"
           [totalCount]="totalCount"

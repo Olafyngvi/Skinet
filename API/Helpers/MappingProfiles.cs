@@ -17,6 +17,8 @@ namespace API.Helpers
             CreateMap<AppUser, AllUsersDto>()
                 .ForMember(d => d.FirstName, o => o.MapFrom(s => s.Address.FirstName))
                 .ForMember(d => d.LastName, o => o.MapFrom(s => s.Address.LastName))
+                .ForMember(d => d.State, o => o.MapFrom(s => s.Address.State))
+                .ForMember(d => d.Phone, o => o.MapFrom(s => s.Address.Phone))
                 .ForMember(d => d.Address, o => o.MapFrom(s => s.Address.Street + " " +s.Address.City));
             CreateMap<Core.Entities.Identity.Address, AddressDto>().ReverseMap();
             CreateMap<CustomerBasketDto, CustomerBasket>();

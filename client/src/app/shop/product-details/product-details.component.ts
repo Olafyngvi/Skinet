@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   NgxGalleryAnimation,
   NgxGalleryImage,
@@ -26,13 +27,19 @@ export class ProductDetailsComponent implements OnInit {
     private shopService: ShopService,
     private activatedRoute: ActivatedRoute,
     private bcService: BreadcrumbService,
-    private basketService: BasketService
+    private basketService: BasketService,
+    private router: Router,
+    private metaService: Meta
   ) {
     this.bcService.set('@productDetails', ' ');
   }
 
   ngOnInit(): void {
     this.loadProduct();
+    this.metaService.updateTag( { property: 'og:description', content: this.product.description});
+    this.metaService.updateTag( { property: 'og:title', content: this.product.name});
+    this.metaService.updateTag( { property: 'og:url', content: 'http://localhost:5001' + this.router.url});
+    this.metaService.updateTag( { property: 'og:image', content: this.product.pictureUrl});
   }
 
   // tslint:disable-next-line: typedef

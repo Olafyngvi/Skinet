@@ -13,7 +13,7 @@ namespace Core.Entities
         public ProductBrand ProductBrand { get; set; }
         public int ProductBrandId { get; set; }
         private readonly List<Photo> _photos = new List<Photo>();
-        public IReadOnlyList<Photo> Photos => _photos.AsReadOnly();
+        public List<Photo> Photos => _photos.ToList();
 
         public void AddPhoto(string pictureUrl, string fileName, bool isMain = false)
         {

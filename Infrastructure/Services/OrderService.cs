@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace Infrastructure.Services
             foreach (var item in basket.Items)
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
-                var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.Photos.SingleOrDefault(x => x.IsMain == true)?.PictureUrl);
+                var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.Photos.SingleOrDefault(x => Convert.ToInt32(x.IsMain) == 1)?.PictureUrl);
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
                 items.Add(orderItem);
             }
@@ -67,6 +68,13 @@ namespace Infrastructure.Services
         public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodsAsync()
         {
             return await _unitOfWork.Repository<DeliveryMethod>().ListAllAsync();
+        }
+
+        public async Task<Order> GetOrderByIdAdminAsync(int id)
+        {
+            var spec = new OrdersWithItemsAndOrderingByIdSpecification(id);
+
+            return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
         }
 
         public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)

@@ -4,4 +4,6 @@ export interface IUsers {
   firstName: string;
   lastName: string;
   address: string;
+  state: string;
+  phone: string;
 }

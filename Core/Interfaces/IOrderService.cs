@@ -9,6 +9,7 @@ namespace Core.Interfaces
         Task<Order> CreateOrderAsync(string buyerEmail, int delieveryMethod, string basketId, Address shippingAddress);
         Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail);
         Task<Order> GetOrderByIdAsync(int id, string buyerEmail);
+        Task<Order> GetOrderByIdAdminAsync(int id);
         Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodsAsync();
     }
 }
