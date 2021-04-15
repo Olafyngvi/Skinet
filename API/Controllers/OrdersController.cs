@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using API.Dtos;
 using API.Errors;
 using API.Extensions;
+using API.Helpers;
 using AutoMapper;
 using Core.Entities.OrderAggregate;
 using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,8 +18,10 @@ namespace API.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
-        public OrdersController(IOrderService orderService, IMapper mapper)
+        private readonly IUnitOfWork _unitOfWork;
+        public OrdersController(IOrderService orderService, IMapper mapper, IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
             _orderService = orderService;
         }
@@ -36,6 +40,24 @@ namespace API.Controllers
             return Ok(order);
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("all")]
+        public async Task<ActionResult<Pagination<OrderToReturnDto>>> GetOrders(
+            [FromQuery] OrderSpecParams orderParams
+        )
+        {
+            var spec = new OrdersWithItemsAndOrderingAdminSpecification(orderParams);
+            var countSpec = new OrdersWithFiltersForCountSpecification(orderParams);
+
+            var totalItems = await _unitOfWork.Repository<Order>().CountAsync(countSpec);
+
+            var orders = await _unitOfWork.Repository<Order>().ListAsync(spec);
+
+            var data = _mapper.Map<IReadOnlyList<OrderToReturnDto>>(orders);
+
+             return Ok(new Pagination<OrderToReturnDto>(orderParams.PageIndex,
+                orderParams.PageSize, totalItems, data));
+        }
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser()
         {
@@ -73,7 +95,7 @@ namespace API.Controllers
             return Ok(_mapper.Map<IReadOnlyList<OrderToReturnDto>>(orders));
         }
 
-        [Authorize(Roles= "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("admin/{id}")]
         public async Task<ActionResult<OrderToReturnDto>> GetOrderByid(int id)
         {

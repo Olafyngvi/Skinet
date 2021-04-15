@@ -11,6 +11,10 @@ export class OrdersService {
   constructor(private http: HttpClient) { }
 
   // tslint:disable-next-line: typedef
+  getAllOrders() {
+    return this.http.get(this.baseUrl + 'orders/all');
+  }
+  // tslint:disable-next-line: typedef
   getOrdersByMail(mail: string) {
     return this.http.get(this.baseUrl + 'orders/' + mail + '/all');
   }
