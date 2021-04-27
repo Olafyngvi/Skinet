@@ -1,9 +1,42 @@
 <section class="admin-page" *ngIf="products">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-3">
+        <ng-container *ngIf="types && brands">
+          <h5 class="text-warning ml-3 mt-3 mb-4">Sort</h5>
+          <select class="custom-select mb-4" (change)="onSortSelected($event.target.value)">
+              <option *ngFor="let sort of sortOptions"
+                  [selected]="shopParams.sort === sort.value"
+                  [value]="sort.value">
+                  {{sort.name}}
+              </option>
+          </select>
+
+          <h5 class="text-warning ml-3">Brands</h5>
+          <ul class="list-group mb-3">
+              <li class="list-group-item" *ngFor="let brand of brands"
+                  [class.active]="brand.id === shopParams.brandId" [value]="brand.id"
+                  (click)="onBrandSelected(brand.id)">
+                  {{brand.name}}
+              </li>
+          </ul>
+          <h5 class="text-warning ml-3">Types</h5>
+          <ul class="list-group my-3">
+              <li class="list-group-item" *ngFor="let type of types"
+                  [class.active]="type.id === shopParams.typeId" [value]="type.id"
+                  (click)="onTypeSelected(type.id)">
+                  {{type.name}}
+              </li>
+          </ul>
+      </ng-container>
+      </div>
+      <div class="col-lg-9">
         <div class="d-flex justify-content-between my-3">
-          <header class="h2">Product List</header>
+          <div class="form-inline" *ngIf="products">
+            <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Search">
+            <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
+            <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
+        </div>
           <button
             [routerLink]="['/admin/create']"
             class="btn btn-outline-success"

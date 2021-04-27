@@ -8,5 +8,6 @@ namespace Infrastructure.Data
           public decimal Price { get; set; }
           public int ProductTypeId { get; set; }
           public int ProductBrandId { get; set; }
+          public int Stock { get; set; }
      }
 }

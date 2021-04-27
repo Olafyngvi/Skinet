@@ -19,14 +19,17 @@ export class BasketComponent implements OnInit {
     this.basketTotals$ = this.basketService.basketTotal$;
   }
 
+  // tslint:disable-next-line: typedef
   removeBasketItem(item: IBasketItem) {
     this.basketService.removeItemFromBasket(item);
   }
 
+  // tslint:disable-next-line: typedef
   incrementItemQuantity(item: IBasketItem) {
-    this.basketService.incrementItemQuantity(item);
+      this.basketService.incrementItemQuantity(item);
   }
 
+  // tslint:disable-next-line: typedef
   decrementItemQuantity(item: IBasketItem) {
     this.basketService.decrementItemQuantity(item);
   }

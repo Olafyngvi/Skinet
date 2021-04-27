@@ -55,14 +55,25 @@ namespace Infrastructure.Services
                 _unitOfWork.Repository<Order>().Delete(existingOrder);
                 await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
             }
-
+                // Update Stock
+            foreach (var item in basket.Items)
+            {
+                var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
+                productItem.Stock -= item.Quantity;
+                _unitOfWork.Repository<Product>().Update(productItem);
+            }
             // TODO: save to db
             var result = await _unitOfWork.Complete();
 
-            if (result <= 0) return null;
-
-            // return order
-            return order;
+            if (result <= 0)
+            {
+                return null;
+            } 
+            else 
+            {
+                // return order
+                return order;
+            }
         }
 
         public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodsAsync()

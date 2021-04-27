@@ -26,5 +26,7 @@ namespace API.Dtos
 
         [Required]
         public string Type { get; set; }
+        [Required]
+        public int Stock { get; set; }
     }
 }

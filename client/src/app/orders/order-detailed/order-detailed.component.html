@@ -6,6 +6,27 @@
         [isBasket]="false"
         [isOrder]="true"
     ></app-basket-summary>
+    <hr>
+      <div class="row">
+        <div class="col-2">
+          <ul class="list-unstyled">
+            <li>Ime i Prezime</li>
+            <li>Adresa</li>
+            <li>Grad</li>
+            <li>Zip</li>
+            <li>Država</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul class="list-unstyled">
+            <li>{{order.shipToAddress.firstName}} {{order.shipToAddress.lastName}}</li>
+            <li>{{order.shipToAddress.street}}</li>
+            <li>{{order.shipToAddress.city}}</li>
+            <li>{{order.shipToAddress.zipCode}}</li>
+            <li>{{order.shipToAddress.state}}</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="col-4">
       <app-order-totals
@@ -15,5 +36,5 @@
       ></app-order-totals>
     </div>
   </div>
-  
+
 </div>

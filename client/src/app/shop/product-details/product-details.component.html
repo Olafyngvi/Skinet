@@ -9,6 +9,8 @@
     </div>
     <div class="col-6">
       <h3>{{ product.name }}</h3>
+      <p *ngIf="product.stock > 0" style="font-size: 1em;color: green;">Dostupno</p>
+      <p *ngIf="product.stock === 0" style="font-size: 1em;color: red;">Nije dostupno</p>
       <p style="font-size: 2em">{{ product.price | currency }}</p>
       <div class="d-flex justify-content-start align-items-center">
         <i
@@ -27,6 +29,7 @@
         <button
           (click)="addItemToBasket()"
           class="btn btn-outline-primary btn-lg ml-4"
+          [disabled]="product.stock === 0"
         >
           Add to Cart
         </button>
@@ -34,7 +37,7 @@
       <div class="row mt-5">
         <div class="col-12 ml-3">
           <h4>Description</h4>
-          <p>{{ product.description }}</p>
+          <p [innerHTML]="product.description"></p>
         </div>
       </div>
     </div>

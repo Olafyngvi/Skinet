@@ -98,7 +98,9 @@ export class ProductDetailsComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   incrementQuantity() {
-    this.quantity++;
+    if (this.quantity < this.product.stock) {
+      this.quantity++;
+    }
   }
 
   // tslint:disable-next-line: typedef

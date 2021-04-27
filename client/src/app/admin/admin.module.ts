@@ -6,9 +6,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 import { EditProductFormComponent } from './edit-product-form/edit-product-form.component';
 import { EditProductPhotosComponent } from './edit-product-photos/edit-product-photos.component';
+import { RichTextEditorModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 @NgModule({
   declarations: [AdminComponent, EditProductComponent, EditProductFormComponent, EditProductPhotosComponent],
-  imports: [CommonModule, SharedModule, AdminRoutingModule],
+  imports: [CommonModule, SharedModule, AdminRoutingModule, RichTextEditorModule],
 })
 export class AdminModule {}

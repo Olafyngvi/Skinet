@@ -25,7 +25,9 @@ export class BasketSummaryComponent implements OnInit {
   }
 
   incrementItemQuantity(item: IBasketItem) {
-    this.increment.emit(item);
+    if (item.quantity < item.stock) {
+      this.increment.emit(item);
+    }
   }
 
   removeBasketItem(item: IBasketItem) {

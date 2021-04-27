@@ -15,6 +15,10 @@ namespace API.Dtos
               ErrorMessage = "Price must be a decimal (e.g 20.30)")]
           public decimal Price { get; set; }
 
+          [RegularExpression(@"^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$",
+              ErrorMessage = "Price must be a decimal (e.g 20.30)")]
+          public decimal OldPrice { get; set; }
+
           public string PictureUrl { get; set; }
 
           [Required]
@@ -22,5 +26,8 @@ namespace API.Dtos
 
           [Required]
           public int ProductBrandId { get; set; }
+
+          [Required]
+          public int Stock { get; set; }
      }
 }

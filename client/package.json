@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.2.1",
     "@angular/router": "~11.2.1",
     "@kolkov/ngx-gallery": "^1.2.3",
+    "@syncfusion/ej2-angular-richtexteditor": "^19.1.57",
     "bootstrap": "^4.6.0",
     "bootswatch": "^4.6.0",
     "font-awesome": "^4.7.0",

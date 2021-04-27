@@ -14,7 +14,7 @@ import { forkJoin } from 'rxjs';
 })
 export class EditProductComponent implements OnInit {
   product: IProduct;
-  productFormValues: ProductFormValues;
+  productFormValues: ProductFormValues = new ProductFormValues();
   brands: IBrand[];
   types: IType[];
 

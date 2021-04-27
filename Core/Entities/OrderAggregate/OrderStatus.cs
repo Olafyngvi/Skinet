@@ -4,6 +4,8 @@ namespace Core.Entities.OrderAggregate
 {
     public enum OrderStatus
     {
+        [EnumMember(Value = "")]
+        None,
         [EnumMember(Value = "Pending")]
         Pending,
 

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { IBrand } from '../shared/models/brand';
 import { IProduct } from '../shared/models/product';
+import { IType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
 import { ShopService } from '../shop/shop.service';
 import { AdminService } from './admin.service';
@@ -10,9 +12,17 @@ import { AdminService } from './admin.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+  @ViewChild('search', {static: false}) searchTerm: ElementRef;
   products: IProduct[];
+  brands: IBrand[];
+  types: IType[];
   totalCount: number;
   shopParams: ShopParams;
+  sortOptions = [
+    {name: 'Alphabetical', value: 'name'},
+    {name: 'Price: Low to high', value: 'priceAsc'},
+    {name: 'Price: High to low', value: 'priceDesc'},
+  ];
 
   constructor(
     private shopService: ShopService,
@@ -23,6 +33,8 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetProducts();
+    this.getBrands();
+    this.getTypes();
   }
 
   // tslint:disable-next-line: typedef
@@ -38,6 +50,25 @@ export class AdminComponent implements OnInit {
       }
     );
   }
+  // tslint:disable-next-line: typedef
+  getBrands() {
+    // tslint:disable-next-line: deprecation
+    this.shopService.getBrands().subscribe(response => {
+      this.brands = [{id: 0, name: 'All'}, ...response];
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  // tslint:disable-next-line: typedef
+  getTypes() {
+    // tslint:disable-next-line: deprecation
+    this.shopService.getTypes().subscribe(response => {
+      this.types = [{id: 0, name: 'All'}, ...response];
+    }, error => {
+      console.log(error);
+    });
+  }
 
   // tslint:disable-next-line: typedef
   onPageChanged(event: any) {
@@ -47,6 +78,46 @@ export class AdminComponent implements OnInit {
       this.shopService.setShopParams(params);
       this.GetProducts(true);
     }
+  }
+  // tslint:disable-next-line: typedef
+  onBrandSelected(brandId: number) {
+    const params = this.shopService.getShopParams();
+    params.brandId = brandId;
+    params.pageNumber = 1;
+    this.shopService.setShopParams(params);
+    this.GetProducts();
+  }
+
+  // tslint:disable-next-line: typedef
+  onTypeSelected(typeId: number) {
+    const params = this.shopService.getShopParams();
+    params.typeId = typeId;
+    params.pageNumber = 1;
+    this.shopService.setShopParams(params);
+    this.GetProducts();
+  }
+  // tslint:disable-next-line: typedef
+  onSortSelected(sort: string) {
+    const params = this.shopService.getShopParams();
+    params.sort = sort;
+    this.shopService.setShopParams(params);
+    this.GetProducts();
+  }
+  // tslint:disable-next-line: typedef
+  onSearch() {
+    const params = this.shopService.getShopParams();
+    params.search = this.searchTerm.nativeElement.value;
+    params.pageNumber = 1;
+    this.shopService.setShopParams(params);
+    this.GetProducts();
+  }
+
+  // tslint:disable-next-line: typedef
+  onReset() {
+    this.searchTerm.nativeElement.value = '';
+    this.shopParams = new ShopParams();
+    this.shopService.setShopParams(this.shopParams);
+    this.GetProducts();
   }
 
   // tslint:disable-next-line: typedef

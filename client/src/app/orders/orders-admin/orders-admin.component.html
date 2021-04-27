@@ -1,1 +1,62 @@
-<p>orders-admin works!</p>
+<div class="container mt-5">
+  <div class="row">
+      <section class="col-12">
+          <div class="d-flex justify-content-between align-items-center pb-2">
+            <div class="pb-3">
+              <label for="status">Order Status</label>
+              <select id="status" class="custom-select" (change)="onStatusSelected($event.target.value)">
+                  <option *ngFor="let status of statusOptions"
+                      [selected]="orderParams.status === status.value"
+                      [value]="status.value">
+                      {{status.name}}
+                  </option>
+              </select>
+            </div>
+            <div>
+              <app-paging-header [totalCount]="totalCount" [pageNumber]="orderParams.pageNumber"
+              [pageSize]="orderParams.pageSize"></app-paging-header>
+            </div>
+            <div class="form-inline mt-2" *ngIf="orders">
+                <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Search">
+                <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
+                <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div *ngIf="totalCount > 0" class="col-12">
+              <table class="table table-hover" style="cursor: pointer;">
+                  <thead class="thead-light">
+                      <tr>
+                          <th>Order</th>
+                          <th>Date</th>
+                          <th>Total</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
+                          <th># {{order.id}}</th>
+                          <td>{{order.orderDate | date: 'medium'}}</td>
+                          <td>{{order.total | currency}}</td>
+                          <td>{{order.status}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div *ngIf="totalCount === 0" class="col-12">
+            No orders
+          </div>
+          </div>
+          <div class="d-flex justify-content-center" *ngIf="totalCount > 0">
+              <app-pager
+                  [pageSize]="orderParams.pageSize"
+                  [totalCount]="totalCount"
+                  [pageNumber]="orderParams.pageNumber"
+                  (pageChanged)="onPageChanged($event)"
+              >
+              </app-pager>
+          </div>
+      </section>
+  </div>
+</div>

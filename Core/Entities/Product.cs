@@ -8,6 +8,8 @@ namespace Core.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public decimal OldPrice { get; set; }
+        public int Stock { get; set; } = 0;
         public ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }
         public ProductBrand ProductBrand { get; set; }

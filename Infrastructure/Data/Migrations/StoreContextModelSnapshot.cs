@@ -141,6 +141,9 @@ namespace Infrastructure.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<decimal>("OldPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -148,6 +151,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("ProductTypeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Stock")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");

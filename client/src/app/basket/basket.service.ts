@@ -88,6 +88,7 @@ export class BasketService {
       item,
       quantity
     );
+    console.log(itemToAdd.stock);
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
     basket.items = this.addOrUpdateItem(basket.items, itemToAdd, quantity);
     this.setBasket(basket);
@@ -167,7 +168,7 @@ export class BasketService {
       itemToAdd.quantity = quantity;
       items.push(itemToAdd);
     } else {
-      items[index].quantity += quantity;
+        items[index].quantity += quantity;
     }
     return items;
   }
@@ -190,6 +191,7 @@ export class BasketService {
       quantity,
       brand: item.productBrand,
       type: item.productType,
+      stock: item.stock,
     };
   }
 }

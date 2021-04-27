@@ -61,7 +61,8 @@ namespace Infrastructure.Data
                             Description = item.Description,
                             Price = item.Price,
                             ProductBrandId = item.ProductBrandId,
-                            ProductTypeId = item.ProductTypeId
+                            ProductTypeId = item.ProductTypeId,
+                            Stock = item.Stock
                         };
                         product.AddPhoto(item.PictureUrl, pictureFileName);
                         context.Products.Add(product);

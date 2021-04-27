@@ -1,28 +1,39 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IProduct, ProductFormValues } from '../../shared/models/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { IBrand } from '../../shared/models/brand';
 import { IType } from '../../shared/models/productType';
 import { ShopService } from 'src/app/shop/shop.service';
+import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './edit-product-form.component.html',
   styleUrls: ['./edit-product-form.component.scss'],
+  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService]
 })
 export class EditProductFormComponent implements OnInit {
   @Input() product: ProductFormValues;
   @Input() brands: IBrand[];
   @Input() types: IType[];
-
-  // tslint:disable-next-line: max-line-length
+  public tools: object = {
+    items: ['Undo', 'Redo', '|',
+        'Bold', 'Italic', 'Underline', 'StrikeThrough', '|',
+        'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
+        'Formats', 'Alignments', '|', 'OrderedList', 'UnorderedList', '|',
+        'Indent', 'Outdent', '|', 'CreateLink',
+        '|', 'Print', 'SourceCode']
+};
+public iframe: object = { enable: true };
+public height = 300;
   constructor(
     private route: ActivatedRoute,
     private adminService: AdminService,
     private router: Router,
     private shopService: ShopService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {}
 
@@ -53,5 +64,14 @@ export class EditProductFormComponent implements OnInit {
         this.router.navigate(['/admin']);
       });
     }
+  }
+  // tslint:disable-next-line: typedef
+  incrementItemQuantity() {
+    this.product.stock++;
+  }
+
+  // tslint:disable-next-line: typedef
+  decrementItemQuantity() {
+    this.product.stock--;
   }
 }

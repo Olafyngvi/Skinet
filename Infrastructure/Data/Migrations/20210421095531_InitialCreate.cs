@@ -3,13 +3,27 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Infrastructure.Data.Migrations
 {
-    public partial class PhotoEntityAdded : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
                 name: "PictureUrl",
                 table: "Products");
+
+            migrationBuilder.AddColumn<decimal>(
+                name: "OldPrice",
+                table: "Products",
+                type: "decimal(18,2)",
+                nullable: true,
+                defaultValue: 0m);
+
+            migrationBuilder.AddColumn<int>(
+                name: "Stock",
+                table: "Products",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.CreateTable(
                 name: "Photo",
@@ -43,6 +57,14 @@ namespace Infrastructure.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Photo");
+
+            migrationBuilder.DropColumn(
+                name: "OldPrice",
+                table: "Products");
+
+            migrationBuilder.DropColumn(
+                name: "Stock",
+                table: "Products");
 
             migrationBuilder.AddColumn<string>(
                 name: "PictureUrl",
