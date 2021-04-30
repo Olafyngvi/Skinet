@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IPagination, Pagination } from '../shared/models/pagination';
-import { ProductFormValues } from '../shared/models/product';
+import { IProduct, ProductFormValues } from '../shared/models/product';
 import { UsersParams } from '../shared/models/usersParams';
 
 @Injectable({
@@ -55,6 +55,11 @@ export class AdminService {
   // tslint:disable-next-line: typedef
   updateProduct(product: ProductFormValues, id: number) {
     return this.http.put(this.baseUrl + 'products/' + id, product);
+  }
+
+  // tslint:disable-next-line: typedef
+  izdvoji(product: IProduct, id: number) {
+    return this.http.put(this.baseUrl + 'products/promote/' + id, product);
   }
 
   // tslint:disable-next-line: typedef

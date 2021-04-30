@@ -108,6 +108,22 @@ namespace API.Controllers
             return _mapper.Map<Product, ProductToReturnDto>(product);
         }
 
+        [HttpPut("promote/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<ProductToReturnDto>> Izdvoji(int id, ProductCreateDto productToUpdate)
+        {
+            var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
+            product.Izdvojen = productToUpdate.Izdvojen;
+
+            _unitOfWork.Repository<Product>().Update(product);
+
+            var result = await _unitOfWork.Complete();
+
+            if (result <= 0) return BadRequest(new ApiResponse(400, "Problem updating product"));
+
+            return _mapper.Map<Product, ProductToReturnDto>(product);
+        }
+
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteProduct(int id)

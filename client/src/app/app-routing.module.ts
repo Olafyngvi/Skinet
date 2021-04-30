@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
+import { SuccessfulComponent } from './contact/successful.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { ServerErrorComponent } from './core/server-error/server-error.component';
 import { TestErrorComponent } from './core/test-error/test-error.component';
 import { HomeComponent } from './home/home.component';
+import { ServisComponent } from './servis/servis.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
   { path: 'contact', component: ContactComponent, data: { breadcrumb: 'Contact' } },
+  { path: 'successful', component: SuccessfulComponent, data: { breadcrumb: 'Thank you' } },
+  { path: 'servis', component: ServisComponent, data: { breadcrumb: 'Servis' } },
   {
     path: 'test-error',
     component: TestErrorComponent,

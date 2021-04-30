@@ -68,6 +68,9 @@
                   <div class="p-2 px-3 text-uppercase">Price</div>
                 </th>
                 <th scope="col">
+                  <div class="p-2 px-3 text-uppercase">Izdvojen</div>
+                </th>
+                <th scope="col">
                   <div class="p-2 px-3 text-uppercase">Edit</div>
                 </th>
                 <th scope="col">
@@ -94,6 +97,7 @@
                   <h5>{{ product.name }}</h5>
                 </th>
                 <td class="align-middle">{{ product.price | currency }}</td>
+                <td class="align-middle"><input class="ml-4" (change)="onChange(product)" [(ngModel)]="product.izdvojen" type="checkbox" value="{{product.izdvojen}}"></td>
                 <td class="align-middle">
                   <button
                     [routerLink]="['edit', product.id]"

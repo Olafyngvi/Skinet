@@ -8,6 +8,7 @@ export interface IProduct {
   productType: string;
   productBrand: string;
   stock: number;
+  izdvojen: boolean;
   photos: IPhoto[];
 }
 

@@ -14,8 +14,8 @@
       class="img-fluid"
       [imageChangedEvent]="imageChangedEvent"
       [imageFile]="files[0]"
-      [maintainAspectRatio]="true"
-      [aspectRatio]="1"
+      [maintainAspectRatio]="false"
+      [aspectRatio]="16 / 9"
       format="png"
       (imageCropped)="imageCropped($event)"
     ></image-cropper>

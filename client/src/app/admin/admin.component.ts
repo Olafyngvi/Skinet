@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IBrand } from '../shared/models/brand';
-import { IProduct } from '../shared/models/product';
+import { IProduct, ProductFormValues } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
 import { ShopService } from '../shop/shop.service';
@@ -13,6 +13,7 @@ import { AdminService } from './admin.service';
 })
 export class AdminComponent implements OnInit {
   @ViewChild('search', {static: false}) searchTerm: ElementRef;
+  productFormValues: ProductFormValues = new ProductFormValues();
   products: IProduct[];
   brands: IBrand[];
   types: IType[];
@@ -129,6 +130,14 @@ export class AdminComponent implements OnInit {
         1
       );
       this.totalCount--;
+    });
+  }
+
+  // tslint:disable-next-line: typedef
+  onChange(product: IProduct) {
+    // tslint:disable-next-line: deprecation
+    this.adminService.izdvoji(product, product.id).subscribe(() => {
+      console.log(product);
     });
   }
 }

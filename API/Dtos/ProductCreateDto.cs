@@ -18,6 +18,7 @@ namespace API.Dtos
           [RegularExpression(@"^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$",
               ErrorMessage = "Price must be a decimal (e.g 20.30)")]
           public decimal OldPrice { get; set; }
+          public bool Izdvojen { get; set; }
 
           public string PictureUrl { get; set; }
 

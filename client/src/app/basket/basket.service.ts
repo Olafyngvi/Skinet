@@ -39,11 +39,8 @@ export class BasketService {
 
   // tslint:disable-next-line: typedef
   // tslint:disable-next-line: typedef
-  setShippingPrice(deliveryMethod: IDeliveryMethod) {
-    this.shipping = deliveryMethod.price;
+  setShippingPrice() {
     const basket = this.getCurrentBasketValue();
-    basket.deliveryMethodId = deliveryMethod.id;
-    basket.shippingPrice = deliveryMethod.price;
     this.calculateTotals();
     this.setBasket(basket);
   }
@@ -152,8 +149,15 @@ export class BasketService {
   // tslint:disable-next-line: typedef
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
-    const shipping = this.shipping;
+    let shipping = this.shipping;
     const subtotal = basket.items.reduce((a, b) => b.price * b.quantity + a, 0);
+    if (subtotal >= 300) {
+      shipping = 0;
+      basket.deliveryMethodId = 4;
+    } else {
+      shipping = 10;
+      basket.deliveryMethodId = 1;
+    }
     const total = subtotal + shipping;
     this.basketTotalSource.next({ shipping, total, subtotal });
   }

@@ -36,10 +36,10 @@ export class CheckoutComponent implements OnInit {
         phone: [null, Validators.required],
       }),
       deliveryForm: this.fb.group({
-        deliveryMethod: [null, Validators.required]
+        deliveryMethod: [null]
       }),
       paymentForm: this.fb.group({
-        nameOnCard: [null, Validators.required]
+        nameOnCard: [null]
       })
     });
   }

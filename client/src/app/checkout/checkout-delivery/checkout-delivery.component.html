@@ -1,10 +1,10 @@
 <div class="mt-4" [formGroup]="checkoutForm">
-    <h4 class="mb-3">Choose your delivery method</h4>
+    <h4 class="mb-3">Dostava</h4>
     <div class="row" formGroupName="deliveryForm">
         <div class="col-6 form-group" *ngFor="let method of deliveryMethods">
             <input type="radio"
                 id={{method.id}}
-                (click)="setShippingPrice(method)"
+
                 value={{method.id}}
                 formControlName="deliveryMethod"
                 class="custom-control-input"
@@ -22,7 +22,7 @@
     <button class="btn btn-outline-primary" cdkStepperPrevious>
         <i class="fa fa-angle-left"></i> Back to address
     </button>
-    <button [disabled]="checkoutForm.get('deliveryForm').invalid" class="btn btn-primary" cdkStepperNext>
+    <button (click)="setShippingPrice()" class="btn btn-primary" cdkStepperNext>
         Go to review <i class="fa fa-angle-right"></i>
     </button>
 </div>
