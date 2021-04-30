@@ -13,7 +13,7 @@
                 ></app-product-form>
               </div>
             </tab>
-            <tab heading="Edit Photos">
+            <tab [disabled]="novi" heading="Edit Photos">
               <app-edit-product-photos
                 [product]="product"
               ></app-edit-product-photos>

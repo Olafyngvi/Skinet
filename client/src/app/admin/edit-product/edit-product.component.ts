@@ -17,6 +17,7 @@ export class EditProductComponent implements OnInit {
   productFormValues: ProductFormValues = new ProductFormValues();
   brands: IBrand[];
   types: IType[];
+  novi: boolean;
 
   constructor(
     private adminService: AdminService,
@@ -41,6 +42,9 @@ export class EditProductComponent implements OnInit {
       () => {
         if (this.route.snapshot.url[0].path === 'edit') {
           this.loadProduct();
+          this.novi = false;
+        } else {
+          this.novi = true;
         }
       }
     );
