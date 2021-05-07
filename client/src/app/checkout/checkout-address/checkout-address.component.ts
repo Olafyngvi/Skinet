@@ -17,6 +17,7 @@ export class CheckoutAddressComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line: typedef
   saveUserAddress() {
     this.accountService.updateUserAddress(this.checkoutForm.get('addressForm').value).subscribe((address: IAddress) => {
       this.toastr.success('Address saved');
@@ -24,7 +25,12 @@ export class CheckoutAddressComponent implements OnInit {
     }, error => {
       this.toastr.error(error.message);
       console.log(error);
-    })
+    });
+  }
+  // tslint:disable-next-line: typedef
+  addUserAddress()
+  {
+    this.checkoutForm.get('addressForm').reset();
   }
 
 }

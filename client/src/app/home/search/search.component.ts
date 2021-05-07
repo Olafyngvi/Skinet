@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-
+  public isOpen = false;
   constructor() { }
 
   ngOnInit(): void {
