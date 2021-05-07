@@ -37,10 +37,10 @@ export class CheckoutComponent implements OnInit {
       }),
       deliveryForm: this.fb.group({
         deliveryMethod: [null]
-      }),
-      paymentForm: this.fb.group({
-        nameOnCard: [null]
       })
+      // paymentForm: this.fb.group({
+        // nameOnCard: [null]
+      // })
     });
   }
 

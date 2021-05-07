@@ -1,5 +1,5 @@
 <div class="mt-4">
-    <app-basket-summary 
+    <app-basket-summary
         [isBasket]=false
         [items]="(basket$ | async).items"
         ></app-basket-summary>
@@ -9,7 +9,7 @@
     <button class="btn btn-outline-primary" cdkStepperPrevious>
         <i class="fa fa-angle-left"></i> Back to Delivery
     </button>
-    <button class="btn btn-primary" (click)="createPaymentIntent()">
-        Go to Payment <i class="fa fa-angle-right"></i>
+    <button class="btn btn-primary" (click)="submitOrder()">
+        Submit order <i class="fa fa-angle-right"></i>
     </button>
 </div>
