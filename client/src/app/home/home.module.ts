@@ -5,12 +5,17 @@ import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './search/search.component';
 import { IzdvojenoComponent } from './izdvojeno/izdvojeno.component';
 import { CallactionComponent } from './callaction/callaction.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [HomeComponent, SearchComponent, IzdvojenoComponent, CallactionComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    BrowserModule,
+    RouterModule
   ],
   exports: [HomeComponent]
 })
