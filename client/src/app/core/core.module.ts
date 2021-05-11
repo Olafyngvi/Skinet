@@ -9,6 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
 import { SharedModule } from '../shared/shared.module';
+import { ConfirmationDialogService } from '../shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SharedModule } from '../shared/shared.module';
       preventDuplicates: true,
     }),
   ],
+  providers: [ConfirmationDialogService],
   exports: [NavBarComponent, SectionHeaderComponent],
 })
 export class CoreModule {}

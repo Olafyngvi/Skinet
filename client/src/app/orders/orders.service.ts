@@ -68,4 +68,9 @@ export class OrdersService {
   getOrderForAdmin(id: number) {
     return this.http.get(this.baseUrl + 'orders/admin/' + id);
   }
+
+  // tslint:disable-next-line: typedef
+  updateOrder(id: number) {
+    return this.http.put(this.baseUrl + 'orders/' + id, {});
+  }
 }

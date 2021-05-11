@@ -106,5 +106,16 @@ namespace API.Controllers
 
             return _mapper.Map<OrderToReturnDto>(order);
         }
+        
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}")]
+        public async Task<ActionResult<OrderToReturnDto>> UpdateOrder(int id)
+        {
+            var order = await _orderService.UpdateOrder(id);
+
+            if (order == null) return NotFound(new ApiResponse(404));
+
+            return _mapper.Map<OrderToReturnDto>(order);
+        }
     }
 }

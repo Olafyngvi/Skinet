@@ -20,7 +20,7 @@
            <strong> <li class="text-muted">Država:</li></strong>
           </ul>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           <ul class="list-unstyled">
             <strong><li>{{order.shipToAddress.firstName}} {{order.shipToAddress.lastName}}</li></strong>
             <strong><li>{{order.shipToAddress.street}}</li></strong>
@@ -30,6 +30,8 @@
           </ul>
         </div>
       </div>
+      <br>
+      <button *ngIf="order.status === 'Pending'" (click)="setShipped(order.id)" class="btn btn-primary">Set as Shipped</button>
     </div>
     <div class="col-4">
       <app-order-totals

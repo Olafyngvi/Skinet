@@ -17,6 +17,7 @@ import { ContactComponent } from './contact/contact.component';
 import { FormsModule } from '@angular/forms';
 import { SuccessfulComponent } from './contact/successful.component';
 import { ServisComponent } from './servis/servis.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ServisComponent } from './servis/servis.component';
     CoreModule,
     HomeModule,
     NgxSpinnerModule,
-    CommonModule
+    CommonModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

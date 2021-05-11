@@ -6,6 +6,7 @@ import { IBrand } from '../../shared/models/brand';
 import { IType } from '../../shared/models/productType';
 import { ShopService } from 'src/app/shop/shop.service';
 import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
+import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-product-form',
