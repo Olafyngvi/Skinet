@@ -5,9 +5,10 @@ import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './search/search.component';
 import { IzdvojenoComponent } from './izdvojeno/izdvojeno.component';
 import { CallactionComponent } from './callaction/callaction.component';
+import { NovoComponent } from './novo/novo.component';
 
 @NgModule({
-  declarations: [HomeComponent, SearchComponent, IzdvojenoComponent, CallactionComponent],
+  declarations: [HomeComponent, SearchComponent, IzdvojenoComponent, CallactionComponent, NovoComponent],
   imports: [
     CommonModule,
     SharedModule
