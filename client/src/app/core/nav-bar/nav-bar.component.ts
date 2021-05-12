@@ -4,6 +4,7 @@ import { AccountService } from 'src/app/account/account.service';
 import { BasketService } from 'src/app/basket/basket.service';
 import { IBasket } from 'src/app/shared/models/basket';
 import { IUser } from 'src/app/shared/models/user';
+import { ConfirmationDialogService } from '../../shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,6 +17,7 @@ export class NavBarComponent implements OnInit {
   isAdmin$: Observable<boolean>;
 
   constructor(
+    private cds: ConfirmationDialogService,
     private basketService: BasketService,
     private accountService: AccountService
   ) {}
@@ -28,6 +30,11 @@ export class NavBarComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   logout() {
-    this.accountService.logout();
+    this.cds.confirm('Logout', 'Jeste li sigurni da se želite odjaviti ?', 'Odjavi se', 'Odustani')
+    .then(confirmed => {
+      if (confirmed) {
+        this.accountService.logout();
+      }
+    });
   }
 }

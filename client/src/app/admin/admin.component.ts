@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ConfirmationDialogService } from '../shared/components/confirmation-dialog/confirmation-dialog.service';
 import { IBrand } from '../shared/models/brand';
 import { IProduct, ProductFormValues } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
@@ -12,7 +13,7 @@ import { AdminService } from './admin.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  @ViewChild('search', {static: false}) searchTerm: ElementRef;
+  @ViewChild('search', { static: false }) searchTerm: ElementRef;
   productFormValues: ProductFormValues = new ProductFormValues();
   products: IProduct[];
   brands: IBrand[];
@@ -20,12 +21,13 @@ export class AdminComponent implements OnInit {
   totalCount: number;
   shopParams: ShopParams;
   sortOptions = [
-    {name: 'Alphabetical', value: 'name'},
-    {name: 'Price: Low to high', value: 'priceAsc'},
-    {name: 'Price: High to low', value: 'priceDesc'},
+    { name: 'Alphabetical', value: 'name' },
+    { name: 'Price: Low to high', value: 'priceAsc' },
+    { name: 'Price: High to low', value: 'priceDesc' },
   ];
 
   constructor(
+    private cds: ConfirmationDialogService,
     private shopService: ShopService,
     private adminService: AdminService
   ) {
@@ -54,21 +56,27 @@ export class AdminComponent implements OnInit {
   // tslint:disable-next-line: typedef
   getBrands() {
     // tslint:disable-next-line: deprecation
-    this.shopService.getBrands().subscribe(response => {
-      this.brands = [{id: 0, name: 'All'}, ...response];
-    }, error => {
-      console.log(error);
-    });
+    this.shopService.getBrands().subscribe(
+      (response) => {
+        this.brands = [{ id: 0, name: 'All' }, ...response];
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   // tslint:disable-next-line: typedef
   getTypes() {
     // tslint:disable-next-line: deprecation
-    this.shopService.getTypes().subscribe(response => {
-      this.types = [{id: 0, name: 'All'}, ...response];
-    }, error => {
-      console.log(error);
-    });
+    this.shopService.getTypes().subscribe(
+      (response) => {
+        this.types = [{ id: 0, name: 'All' }, ...response];
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   // tslint:disable-next-line: typedef
@@ -123,14 +131,25 @@ export class AdminComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   deleteProduct(id: number) {
-    // tslint:disable-next-line: deprecation
-    this.adminService.deleteProduct(id).subscribe((response: any) => {
-      this.products.splice(
-        this.products.findIndex((p) => p.id === id),
-        1
-      );
-      this.totalCount--;
-    });
+    this.cds
+      .confirm(
+        'Pažnja',
+        'Jeste li sigurni da želite obrisati odabrani proizvod ?',
+        'Obriši',
+        'Odustani'
+      )
+      .then((confirmed) => {
+        if (confirmed) {
+          // tslint:disable-next-line: deprecation
+          this.adminService.deleteProduct(id).subscribe((response: any) => {
+            this.products.splice(
+              this.products.findIndex((p) => p.id === id),
+              1
+            );
+            this.totalCount--;
+          });
+        }
+      });
   }
 
   // tslint:disable-next-line: typedef

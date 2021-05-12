@@ -18,6 +18,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PhotoWidgetComponent } from './components/photo-widget/photo-widget.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
+import { AlertDialogComponent } from './components/alert-dialog/alert-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     StepperComponent,
     BasketSummaryComponent,
     PhotoWidgetComponent,
+    ConfirmationDialogComponent,
+    AlertDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +67,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     NgxDropzoneModule,
     ImageCropperModule,
     PhotoWidgetComponent,
+    ConfirmationDialogComponent,
+    AlertDialogComponent
   ],
 })
 export class SharedModule {}

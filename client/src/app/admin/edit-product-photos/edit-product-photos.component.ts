@@ -1,6 +1,7 @@
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmationDialogService } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { IProduct } from 'src/app/shared/models/product';
 import { AdminService } from '../admin.service';
 
@@ -15,6 +16,7 @@ export class EditProductPhotosComponent implements OnInit {
   addPhotoMode = false;
 
   constructor(
+    private cds: ConfirmationDialogService,
     private adminService: AdminService,
     private toast: ToastrService
   ) {}
@@ -56,19 +58,33 @@ export class EditProductPhotosComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   deletePhoto(photoId: number) {
-    // tslint:disable-next-line: deprecation
-    this.adminService.deleteProductPhoto(photoId, this.product.id).subscribe(
-      () => {
-        const photoIndex = this.product.photos.findIndex(
-          (x) => x.id === photoId
-        );
-        this.product.photos.splice(photoIndex, 1);
-      },
-      (error) => {
-        this.toast.error('Problem deleting photo');
-        console.log(error);
-      }
-    );
+    this.cds
+      .confirm(
+        'Pažnja',
+        'Jeste li sigurni da želite obrisati odabranu sliku ?',
+        'Obriši',
+        'Odustani'
+      )
+      .then((confirmed) => {
+        if (confirmed) {
+          // tslint:disable-next-line: deprecation
+          this.adminService
+            .deleteProductPhoto(photoId, this.product.id)
+            // tslint:disable-next-line: deprecation
+            .subscribe(
+              () => {
+                const photoIndex = this.product.photos.findIndex(
+                  (x) => x.id === photoId
+                );
+                this.product.photos.splice(photoIndex, 1);
+              },
+              (error) => {
+                this.toast.error('Problem deleting photo');
+                console.log(error);
+              }
+            );
+        }
+      });
   }
 
   // tslint:disable-next-line: typedef

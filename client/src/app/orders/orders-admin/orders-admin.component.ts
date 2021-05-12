@@ -77,5 +77,4 @@ export class OrdersAdminComponent implements OnInit {
     this.ordersService.setOrderParams(this.orderParams);
     this.getOrders();
   }
-
 }

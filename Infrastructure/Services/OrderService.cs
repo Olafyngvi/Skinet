@@ -101,5 +101,27 @@ namespace Infrastructure.Services
 
             return await _unitOfWork.Repository<Order>().ListAsync(spec);
         }
+
+        public async Task<Order> UpdateOrder(int id)
+        {
+            var spec = new OrdersWithItemsAndOrderingByIdSpecification(id);
+
+            var order = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+            if (order != null)
+                order.Status = OrderStatus.Shipped;
+            
+            _unitOfWork.Repository<Order>().Update(order);
+            var result = await _unitOfWork.Complete();
+
+            if (result <= 0)
+            {
+                return null;
+            } 
+            else 
+            {
+                // return order
+                return order;
+            }
+        }
     }
 }
