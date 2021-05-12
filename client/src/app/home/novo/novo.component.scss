@@ -1,6 +1,7 @@
 .full-width-div{
-    height:650px;
+    height:600px;
     background-color: rgb(233, 229, 229);
+    margin-top: 10%;
 }
 .row{
     width: 90%;
@@ -24,11 +25,26 @@ h3{
 #naziv{
     margin-top: 10%;
     text-align: center;
+    transition: transform .2s;
+}
+#naziv:hover{
+  transform:scale(1.2);
+}
+a{
+  color: black;
+}
+a:hover{
+  color: rgba(77, 77, 88, 0.555);
+  text-decoration: none;
 }
 #cijena{
     margin-top:20%;
     text-align: center;
     font-size: 140%;
+    font-style:inherit;
+    font-weight: 600;
+    color:#008cba;
+    
 }
 img{
       max-height: 200px;
