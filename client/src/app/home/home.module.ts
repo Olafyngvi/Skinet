@@ -9,6 +9,7 @@ import { NovoComponent } from './novo/novo.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { BrendoviComponent } from './brendovi/brendovi.component';
+import { SnizenoComponent } from './snizeno/snizeno.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { BrendoviComponent } from './brendovi/brendovi.component';
     CallactionComponent,
     NovoComponent,
     BrendoviComponent,
+    SnizenoComponent,
   ],
   imports: [CommonModule, SharedModule, BrowserModule, RouterModule],
   exports: [HomeComponent],
