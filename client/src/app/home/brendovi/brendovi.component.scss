@@ -1,8 +1,10 @@
 img{
     display: inline-block;
-    height: 20%;
-    width: 15%;
-    padding: 2px;
+    max-height: 300px;
+    max-width: 300px;
+    background-color: white;
+    margin-top: 20px;
+    padding: 5%;
     -webkit-transform: scale(1.5);
 	transform: scale(1.5);
 	-webkit-transition: .3s ease-in-out;
@@ -12,5 +14,11 @@ img:hover {
 	-webkit-transform: scale(1);
 	transform: scale(1);
     opacity: .70;
+}
+.full-width-div{
+    border:1px solid gray;
+   text-align: center; 
+   background-color:white;
+   padding-top:30px;
 }
 
