@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { BrendoviComponent } from './brendovi/brendovi.component';
 import { SnizenoComponent } from './snizeno/snizeno.component';
+import { DnoComponent } from './dno/dno.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SnizenoComponent } from './snizeno/snizeno.component';
     NovoComponent,
     BrendoviComponent,
     SnizenoComponent,
+    DnoComponent,
   ],
   imports: [CommonModule, SharedModule, BrowserModule, RouterModule],
   exports: [HomeComponent],
