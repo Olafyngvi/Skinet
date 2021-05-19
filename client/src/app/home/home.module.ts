@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { BrendoviComponent } from './brendovi/brendovi.component';
 import { SnizenoComponent } from './snizeno/snizeno.component';
 import { DnoComponent } from './dno/dno.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DnoComponent } from './dno/dno.component';
     BrendoviComponent,
     SnizenoComponent,
     DnoComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, SharedModule, BrowserModule, RouterModule],
   exports: [HomeComponent],
