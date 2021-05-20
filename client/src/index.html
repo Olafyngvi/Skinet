@@ -15,7 +15,22 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Great+Vibes">
-  
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+    window.watsonAssistantChatOptions = {
+        integrationID: "f26c5e6c-6569-46c1-acd6-c1934972a3e8", // The ID of this integration.
+        region: "eu-de", // The region your integration is hosted in.
+        serviceInstanceID: "b583090e-5688-4150-8078-0e13e532dd69", // The ID of your service instance.
+        onLoad: function(instance) { instance.render(); }
+      };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+      document.head.appendChild(t);
+    });
+  </script>
 </head>
 <body>
   <app-root></app-root>

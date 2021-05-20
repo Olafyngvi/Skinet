@@ -18,14 +18,30 @@ import { FormsModule } from '@angular/forms';
 import { SuccessfulComponent } from './contact/successful.component';
 import { ServisComponent } from './servis/servis.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// tslint:disable-next-line: import-spacing
+import {  AuthServiceConfig } from 'angularx-social-login';
+// tslint:disable-next-line: import-spacing
+import { SocialLoginModule, GoogleLoginProvider, }  from 'angularx-social-login';
 
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('76633181732-ubtdsfc3gvod8v643t1t57n0duqgmqgc.apps.googleusercontent.com')
+  }
+]);
+// tslint:disable-next-line: typedef
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactComponent,
     SuccessfulComponent,
-    ServisComponent
+    ServisComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,13 +53,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HomeModule,
     NgxSpinnerModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    SocialLoginModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    {provide: AuthServiceConfig,
+    useFactory: provideConfig},
     Meta
+
   ],
   bootstrap: [AppComponent]
 })

@@ -10,5 +10,49 @@
 
             <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </form>
+        <hr>
+        <div class="forma1" style="padding-left: 25%;">
+        <p style="text-decoration: solid;">Don't have an account ! <a
+            routerLink="/account/register"
+            href="#"
+            >  Sign up</a></p> 
+    </div> 
+    <hr>
+    <div *ngIf="!user" class="card text-center">
+        
+        <div class="google-btn">
+            <div class="google-icon-wrapper">
+              <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+            </div>
+            <p class="btn-text" (click)="signInWithGoogle()" ><b>Sign in with google</b></p>
+          </div>
+    </div>    
+    <div *ngIf="user" class="card text-center">
+        
+        <img src="{{user.photoUrl}}" class="card-img-top img-responsive photo">
+        <div class="card-block">
+            <h4 class="card-title">{{user.name}}</h4>
+            <p class="card-text">{{user.email}}</p>
+        </div>
+                
+                <br/>
+                    <form [formGroup]="registerForm" (ngSubmit)="OnSubmit()">
+                       
+                        <app-text-input formControlName="displayName" [label]="'Display Name'"></app-text-input>
+                        <app-text-input formControlName="email" [label]="'Email address'"></app-text-input>
+                        <app-text-input formControlName="password" [label]="'Password'" [type]="'password'"></app-text-input>
+            
+                        <ul class="text-danger list-unstyled" *ngIf="errors">
+                            <li *ngFor="let error of errors">
+                                {{error}}
+                            </li>
+                        </ul>
+            
+                        <button  class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                    </form>
+                    <br/>
+                    <button class="btn btn-lg btn-primary btn-block" (click)="signOut()">Sign Out</button>
+            </div>
+        </div>
     </div>
-</div>
+

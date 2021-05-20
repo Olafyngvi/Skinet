@@ -20,10 +20,11 @@ export class RegisterComponent implements OnInit {
     this.createRegisterForm();
   }
 
+  // tslint:disable-next-line: typedef
   createRegisterForm() {
     this.registerForm = this.fb.group({
       displayName: [null, [Validators.required]],
-      email: [null, 
+      email: [null,
         [Validators.required, Validators
         .pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
         [this.validateEmailNotTaken()]
@@ -32,13 +33,15 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+
+  // tslint:disable-next-line: typedef
   onSubmit() {
     this.accountService.register(this.registerForm.value).subscribe(response => {
       this.router.navigateByUrl('/shop');
     }, error => {
       console.log(error);
       this.errors = error.errors;
-    })
+    });
   }
 
   validateEmailNotTaken(): AsyncValidatorFn {
@@ -54,8 +57,8 @@ export class RegisterComponent implements OnInit {
             })
           );
         })
-      )
-    }
+      );
+    };
   }
 
 }
