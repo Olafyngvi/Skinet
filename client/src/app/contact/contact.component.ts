@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Contact } from '../shared/models/contact';
 import { ContactService } from './contact.service';
 
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -23,14 +24,14 @@ export class ContactComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  //onSubmit() {
+  // onSubmit() {
     // tslint:disable-next-line: deprecation
-    //this.contactService.getMessage(this.contact).subscribe(res => {
-      //this.router.navigate(['/successful']);
-    //}, err => {
-      //console.log(err);
-    //});
-  //}
+    // this.contactService.getMessage(this.contact).subscribe(res => {
+      // this.router.navigate(['/successful']);
+    // }, err => {
+      // console.log(err);
+    // });
+  // }
 
   onSubmit(form: NgForm): void {
     if (form.invalid) {

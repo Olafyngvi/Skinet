@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, of, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, of, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IAddress } from '../shared/models/address';
@@ -16,6 +17,11 @@ export class AccountService {
   currentUser$ = this.currentUserSource.asObservable();
   private isAdminSource = new ReplaySubject<boolean>(1);
   isAdmin$ = this.isAdminSource.asObservable();
+  // tslint:disable-next-line: no-inferrable-types
+  private baseUrlForgotPassword: string  = '/client/src/app/account/forgot-password';
+  cookieService: any;
+
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -52,6 +58,17 @@ export class AccountService {
       })
     );
   }
+  // tslint:disable-next-line: typedef
+  register_google(value: any) {
+    return this.http.post(this.baseUrl + 'account/register', value).pipe(
+      map((user: IUser) => {
+        if (user) {
+
+            this.currentUserSource.next(user);
+        }
+      })
+    );
+  }
 
   // tslint:disable-next-line: typedef
   register(values: any) {
@@ -64,7 +81,6 @@ export class AccountService {
       })
     );
   }
-
   // tslint:disable-next-line: typedef
   logout() {
     localStorage.removeItem('token');
@@ -75,6 +91,27 @@ export class AccountService {
   // tslint:disable-next-line: typedef
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'account/emailexists?email=' + email);
+  }
+
+  // tslint:disable-next-line: typedef
+  sendForgotPasswordEmail(email: string) {
+    return this.http.post<any>(
+      this.baseUrlForgotPassword + '/' + email,
+      {},
+      {
+        headers: { Accept: 'application/json', 'No-Auth': 'True', 'X-XSRF-TOKEN': this.cookieService.get('XSRF-TOKEN')}
+      }
+    )
+    .pipe(
+      map(
+        (result) => {
+          return result;
+        },
+        (error) => {
+          return error;
+        }
+      )
+    );
   }
 
   // tslint:disable-next-line: typedef
@@ -95,4 +132,5 @@ export class AccountService {
       }
     }
   }
+
 }
