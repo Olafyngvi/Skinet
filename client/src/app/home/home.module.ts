@@ -8,6 +8,10 @@ import { CallactionComponent } from './callaction/callaction.component';
 import { NovoComponent } from './novo/novo.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { BrendoviComponent } from './brendovi/brendovi.component';
+import { SnizenoComponent } from './snizeno/snizeno.component';
+import { DnoComponent } from './dno/dno.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { RouterModule } from '@angular/router';
     IzdvojenoComponent,
     CallactionComponent,
     NovoComponent,
+    BrendoviComponent,
+    SnizenoComponent,
+    DnoComponent,
+    FooterComponent,
   ],
   imports: [CommonModule, SharedModule, BrowserModule, RouterModule],
   exports: [HomeComponent],
