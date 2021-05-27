@@ -31,7 +31,9 @@
         </div>
       </div>
       <br>
-      <button *ngIf="order.status === 'Pending'" (click)="setShipped(order.id)" class="btn btn-primary">Set as Shipped</button>
+      <div *ngIf="isAdmin$ | async">
+        <button *ngIf="order.status === 'Pending'" (click)="setShipped(order.id)" class="btn btn-primary">Set as Shipped</button>
+      </div>
     </div>
     <div class="col-4">
       <app-order-totals
