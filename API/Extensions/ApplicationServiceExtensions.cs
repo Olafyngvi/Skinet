@@ -12,6 +12,7 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddTransient<IMailService, MailService>();
             services.AddSingleton<IResponseCacheService, ResponseCacheService>();
             services.AddScoped<IUsersRepository, UsersRepository>();
             services.AddScoped<IPhotoService, PhotoService>();
