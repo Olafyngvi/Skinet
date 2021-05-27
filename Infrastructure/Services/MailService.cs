@@ -52,6 +52,33 @@ namespace Infrastructure.Services
             await smtp.SendMailAsync(message);
         }
 
+        public async Task SendOrderMailAsync(int orderNumber, string items, decimal total, string address)
+        {
+            string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\Order.html";
+            StreamReader str = new StreamReader(FilePath);
+            string MailText = str.ReadToEnd();
+            str.Close();
+            MailText = MailText.Replace("[orderNumber]", orderNumber.ToString()).Replace("[items]", items).Replace("[total]", total.ToString()).Replace("[address]", address);
+            var fromAddress = new MailAddress(mailFrom, "Drinex Computers");
+            var toAddress = new MailAddress(mailTo, "");
+            string fromPassword = mailFromPassword;
+            const string subject = "Nova narudžba";
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            var message = new MailMessage(fromAddress, toAddress);
+            message.IsBodyHtml = true;
+            message.Subject = subject;
+            message.Body = MailText;
+            await smtp.SendMailAsync(message);
+        }
+
         public async Task SendWelcomeEmailAsync(Contact contact)
         {
             string FilePath = Directory.GetCurrentDirectory() + "\\Templates\\ContactChanged.html";

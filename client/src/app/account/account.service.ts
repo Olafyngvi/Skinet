@@ -2,17 +2,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IAddress } from '../shared/models/address';
 import { IUser } from '../shared/models/user';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ExternalAuthDto } from '../shared/models/externalAuthDto';
+import { AuthResponseDto } from '../shared/models/authResponseDto ';
+import { AuthService } from 'angularx-social-login';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
   baseUrl = environment.apiUrl;
+  private authChangeSub = new Subject<boolean>();
+  public authChanged = this.authChangeSub.asObservable();
   private currentUserSource = new ReplaySubject<IUser>(1);
   currentUser$ = this.currentUserSource.asObservable();
   private isAdminSource = new ReplaySubject<boolean>(1);
@@ -23,7 +29,7 @@ export class AccountService {
 
 
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router, private _jwtHelper: JwtHelperService) {}
 
   // tslint:disable-next-line: typedef
   loadCurrentUser(token: string) {
@@ -45,10 +51,9 @@ export class AccountService {
       })
     );
   }
-
-  // tslint:disable-next-line: typedef
-  login(values: any) {
-    return this.http.post(this.baseUrl + 'account/login', values).pipe(
+  public externalLogin = (body: ExternalAuthDto) => {
+    // tslint:disable-next-line: max-line-length
+    return this.http.post(this.baseUrl + 'account/externallogin', body).pipe(
       map((user: IUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
@@ -58,13 +63,19 @@ export class AccountService {
       })
     );
   }
+
+  public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
+    this.authChangeSub.next(isAuthenticated);
+  }
+
   // tslint:disable-next-line: typedef
-  register_google(value: any) {
-    return this.http.post(this.baseUrl + 'account/register', value).pipe(
+  login(values: any) {
+    return this.http.post(this.baseUrl + 'account/login', values).pipe(
       map((user: IUser) => {
         if (user) {
-
-            this.currentUserSource.next(user);
+          localStorage.setItem('token', user.token);
+          this.currentUserSource.next(user);
+          this.isAdminSource.next(this.isAdmin(user.token));
         }
       })
     );
@@ -85,6 +96,7 @@ export class AccountService {
   logout() {
     localStorage.removeItem('token');
     this.currentUserSource.next(null);
+    this.authService.signOut();
     this.router.navigateByUrl('/');
   }
 

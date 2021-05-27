@@ -1,5 +1,6 @@
 using System.Linq;
 using API.Errors;
+using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Services;
@@ -12,6 +13,7 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<JwtHandler>();
             services.AddTransient<IMailService, MailService>();
             services.AddSingleton<IResponseCacheService, ResponseCacheService>();
             services.AddScoped<IUsersRepository, UsersRepository>();

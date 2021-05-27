@@ -6,6 +6,7 @@ import { AuthService } from 'angularx-social-login';
 import { SocialUser, GoogleLoginProvider} from 'angularx-social-login';
 import { of, timer } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { ExternalAuthDto } from 'src/app/shared/models/externalAuthDto';
 
 
 @Component({
@@ -19,63 +20,56 @@ export class LoginComponent implements OnInit {
   user: SocialUser;
   registerForm: FormGroup;
   errors: string[];
+  showError: boolean;
+  errorMessage: string;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private authService: AuthService, private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private authService: AuthService,
+              private accountService: AccountService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/shop';
     this.createLoginForm();
     this.authService.authState.subscribe((user) => {
       this.user = user;
+    });
+  }
+  signInWithGoogle = () => {
+    this.showError = false;
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+    .then(res => {
+      const user: SocialUser = { ...res };
+      console.log(user);
+      this.user = user;
+      const externalAuth: ExternalAuthDto = {
+        provider: user.provider,
+        idToken: user.idToken
+      };
+      this.validateExternalAuth(externalAuth);
+    }, error => console.log(error));
+  }
+
+  // tslint:disable-next-line: typedef
+  validateExternalAuth(externalAuth: ExternalAuthDto) {
+    this.accountService.externalLogin(externalAuth)
+    .subscribe(res => {
+      this.router.navigate([this.returnUrl]);
+    },
+    error => {
+      console.log(error);
+      this.errorMessage = error;
+      this.showError = true;
 
     });
-    this.createRegisterForm_google();
-  }
-  signInWithGoogle(): any {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
   signOut(): any{
     // tslint:disable-next-line: no-unused-expression
     this.authService.signOut();
   }
-  // tslint:disable-next-line: typedef
-  createRegisterForm_google() {
-    this.registerForm = this.fb.group({
-      displayName: [null, [Validators.required]],
-      email: [null,
-        [Validators.required, Validators
-        .pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')],
-        [this.validateEmailNotTaken_google()]
-      ],
-      password: [null, Validators.required]
-    });
-  }
-  validateEmailNotTaken_google(): AsyncValidatorFn {
-    return control => {
-      return timer(500).pipe(
-        switchMap(() => {
-          if (control.value) {
-            return of(null);
-          }
-          return this.accountService.checkEmailExists(control.value).pipe(
-            map(res => {
-               return res ? {emailExists: true} : null;
-            })
-          );
-        })
-      );
-    };
-  }
-  // tslint:disable-next-line: typedef
-  OnSubmit() {
-    this.accountService.register_google(this.registerForm.value).subscribe(response => {
-      this.router.navigateByUrl('/shop');
-    }, error => {
-      console.log(error);
-      this.errors = error.errors;
-    });
-  }
+
   // tslint:disable-next-line: typedef
   createLoginForm() {
     this.loginForm = new FormGroup({
@@ -94,4 +88,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  public signOutExternal = () => {
+    this.authService.signOut();
+  }
 }

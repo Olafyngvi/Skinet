@@ -15,24 +15,25 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ContactComponent } from './contact/contact.component';
 import { FormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
 import { SuccessfulComponent } from './contact/successful.component';
 import { ServisComponent } from './servis/servis.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// tslint:disable-next-line: import-spacing
-import {  AuthServiceConfig } from 'angularx-social-login';
-// tslint:disable-next-line: import-spacing
-import { SocialLoginModule, GoogleLoginProvider, }  from 'angularx-social-login';
-
+import { SocialLoginModule, GoogleLoginProvider, AuthServiceConfig} from 'angularx-social-login';
 
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('76633181732-ubtdsfc3gvod8v643t1t57n0duqgmqgc.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('310477454057-rvsedr66u7dvktiiv6fjq9ah8u4b8dt9.apps.googleusercontent.com')
   }
 ]);
 // tslint:disable-next-line: typedef
 export function provideConfig() {
   return config;
+}
+// tslint:disable-next-line: typedef
+export function tokenGetter() {
+  return localStorage.getItem('token');
 }
 
 @NgModule({
@@ -54,7 +55,14 @@ export function provideConfig() {
     NgxSpinnerModule,
     CommonModule,
     NgbModule,
-    SocialLoginModule
+    SocialLoginModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: ['localhost:5001'],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
@@ -62,8 +70,7 @@ export function provideConfig() {
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     {provide: AuthServiceConfig,
     useFactory: provideConfig},
-    Meta
-
+    Meta,
   ],
   bootstrap: [AppComponent]
 })

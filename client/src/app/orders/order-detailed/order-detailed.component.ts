@@ -28,8 +28,6 @@ export class OrderDetailedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // tslint:disable-next-line: no-debugger
-    debugger;
     this.isAdmin$ = this.accountService.isAdmin$;
     // tslint:disable-next-line: deprecation
     this.isAdmin$.subscribe((admin) => {
