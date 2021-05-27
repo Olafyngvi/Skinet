@@ -1718,3 +1718,11 @@
     }
 
   }
+  // Small devices (landscape phones, 477px and up)
+@media (min-width: 477px) and (max-width: 767.98px) {
+  .animated-button {
+    padding: 10px 20px;
+    margin: 220px 25px;
+  }
+
+ }
