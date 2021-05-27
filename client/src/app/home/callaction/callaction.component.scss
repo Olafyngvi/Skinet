@@ -1710,3 +1710,11 @@
               transform: translateY(100%);
     }
   }
+
+  @media (max-width: 477.98px) { 
+    .animated-button {
+      padding: 10px 20px;
+      margin: 120px 25px;
+    }
+
+  }

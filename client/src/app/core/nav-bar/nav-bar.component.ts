@@ -15,6 +15,7 @@ export class NavBarComponent implements OnInit {
   basket$: Observable<IBasket>;
   currentUser$: Observable<IUser>;
   isAdmin$: Observable<boolean>;
+  public isOpen=false;
 
   constructor(
     private cds: ConfirmationDialogService,

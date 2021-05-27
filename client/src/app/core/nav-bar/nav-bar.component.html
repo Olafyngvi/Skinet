@@ -1,24 +1,51 @@
 <header
-  class="d-flex flex-column flex-md-row align-items-center justify-content-between p-2 px-md-4 mb-3 bg-white border-bottom shadow-sm fixed-top"
+  class="header"
 >
-  <img
-    src="/assets/images/Drinex_logo.png"
-    style="max-height: 70px"
-    alt="logo"
-    class="logo"
-    routerLink="/"
-  />
-  <nav class="my-2 my-md-0 me-md-3 text-uppercase" style="font-size: larger">
-    <a
-      class="p-2"
-      [routerLink]="['/']"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      >Home</a
-    >
-    <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
-    <a class="p-2" routerLink="/servis" routerLinkActive="active">Servis</a>
-    <a class="p-2" routerLink="/contact" routerLinkActive="active">Kontakt</a>
+  <nav class="navbar navbar-inverse" style="font-size: larger">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <img class="navbar-brand" 
+          src="/assets/images/Drinex_logo.png"
+          style="max-height: 70px"
+          alt="logo"
+          class="logo"
+          routerLink="/"
+        />
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a
+          class="p-2"
+          [routerLink]="['/']"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }" >Home</a>
+         <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
+        <a class="p-2" routerLink="/servis" routerLinkActive="active">Servis</a>
+        <a class="p-2" routerLink="/contact" routerLinkActive="active">Kontakt</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li id="ikone"> <a routerLink="/basket" class="position-relative">
+          <i class="fa fa-shopping-cart fa-2x"></i>
+          <div *ngIf="basket$ | async as basket">
+            {{ basket.items.length }}
+          </div>
+        </a>
+           <ng-container *ngIf="(currentUser$ | async) === null">
+          <a 
+            class="login"
+            routerLink="/account/login"
+            href="#"> <i class="fa fa-user"></i>Login</a>
+          <a
+            class="register"
+            routerLink="/account/register"
+            href="#"> <i class="fa fa-key"></i> Sign up</a>
+          
+           </ng-container> 
+           </li>
+        </ul>
+    
+    </div>
+   
     <a
       *ngIf="isAdmin$ | async"
       class="p-2"
@@ -27,28 +54,13 @@
       >Admin</a
     >
   </nav>
-  <div class="d-flex align-items-center">
-    <a routerLink="/basket" class="position-relative">
-      <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
-      <div *ngIf="basket$ | async as basket" class="cart-no">
-        {{ basket.items.length }}
-      </div>
-    </a>
 
-    <ng-container *ngIf="(currentUser$ | async) === null">
-      <a
-        routerLink="/account/login"
-        class="btn btn-outline-secondary mr-2"
-        href="#"
-        >Login</a
-      >
-      <a
-        routerLink="/account/register"
-        class="btn btn-outline-secondary mr-3"
-        href="#"
-        >Sign up</a
-      >
-    </ng-container>
+
+
+  <div class="d-flex align-items-center">
+  
+
+    
     <ng-container *ngIf="currentUser$ | async as user">
       <div class="dropdown ml-3 mr-5" dropdown>
         <a class="dropdown-toggle" style="cursor: pointer" dropdownToggle>

@@ -38,3 +38,11 @@ label.xng-breadcrumb-trail {
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+/* veliki tablet - 1200px (sirina manja od 1140px) */
+@media only screen and (max-width: 1200px) {
+    body{
+        overflow-x: hidden;
+    }
+}
+
