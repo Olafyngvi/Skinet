@@ -35,7 +35,6 @@ namespace Infrastructure.Services
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.Photos.SingleOrDefault(x => Convert.ToInt32(x.IsMain) == 1)?.PictureUrl);
-                /*mailOrderContent.Append($"<tr><td width=\"80%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{productItem.Name}</h4></td><td width=\"20%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{item.Price} KM</h4></td<td width=\"20%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{item.Quantity}</h4></td></tr>");*/
                 mailOrderContent.Append($"<tr style=\"border-collapse:collapse\"><td width=\"80%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{productItem.Name}</h4></td><td width=\"20%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;float:left;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{item.Price} KM</h4></td><td width=\"20%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{item.Quantity}</h4></td></tr> ");
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
                 items.Add(orderItem);
@@ -48,8 +47,8 @@ namespace Infrastructure.Services
             var subtotal = items.Sum(item => item.Price * item.Quantity);
 
             // check to see if order exists
-            var spec = new OrderByPaymentIntentWithItemsSpecification(basket.PaymentIntentId);
-            var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+            // var spec = new OrderByPaymentIntentWithItemsSpecification(basket.PaymentIntentId);
+            //var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
 
             // create order
             var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
@@ -57,11 +56,11 @@ namespace Infrastructure.Services
             StringBuilder mailShippingInfo = 
             new StringBuilder($"<p>{shippingAddress.FirstName} {shippingAddress.LastName}</p><p>{shippingAddress.Street}</p><p>{shippingAddress.City}</p><p>{shippingAddress.ZipCode}</p><p>{shippingAddress.State}</p>");
 
-            if (existingOrder != null)
+            /*if (existingOrder != null)
             {
                 _unitOfWork.Repository<Order>().Delete(existingOrder);
                 await _paymentService.CreateOrUpdatePaymentIntent(basket.Id);
-            }
+            }*/
                 // Update Stock
             foreach (var item in basket.Items)
             {
