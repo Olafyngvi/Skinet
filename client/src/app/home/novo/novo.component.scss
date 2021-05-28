@@ -1,18 +1,13 @@
 .full-width-div{
-    height:600px;
+    height:auto;
     background-color: rgb(233, 229, 229);
-    margin-top: 10%;
 }
-.row{
-    width: 90%;
-    margin-left: 5%;
-    height: 80%;
-}
-h3{
+h1{
     
     text-align: center;
-    padding-top: 3%;
+    padding-top: 2%;
     padding-bottom: 1%;
+    font-weight: 300;
 }
 
 #novo{
@@ -20,7 +15,6 @@ h3{
     color: white;
     text-align: center;
     margin-left: 70%;
-    margin-bottom: 15%;
 }
 #naziv{
     margin-top: 10%;
@@ -38,56 +32,155 @@ a:hover{
   text-decoration: none;
 }
 #cijena{
-    margin-top:20%;
+  margin-top: 2%;
     text-align: center;
-    font-size: 140%;
+    font-size: 180%;
     font-style:inherit;
     font-weight: 600;
     color:#008cba;
     
 }
 img{
-      max-height: 200px;
-      height: 200px;
-      max-width: 200px;
-      width: 200px; 
+      max-height: 450px;
+      height: 450px;
+      max-width: 450px;
+      width: 450px; 
       object-fit: cover;
       background-color: white;
   }
 
-
-.container {
-  padding: 2rem 0rem;
+ @media (max-width: 437px){
+  img{
+    max-height: 250px;
+    height: 150px;
+    max-width: 250px;
+    width: 150px; 
+    object-fit: cover;
+    background-color: white;
+  }
+  #cijena{
+    font-size: 120%;}
+  #novo{
+    font-size: x-small;
+  }
+ } 
+// Extra small devices (portrait phones, less than 477px)
+@media (min-width: 437px) and(max-width: 477.98px) { 
+  #cijena{
+    margin-top:0%;
+    text-align: center;
+    font-size: 100%;
+    font-style:inherit;
+    font-weight: 600;
+    color:#008cba;
 }
-
-h4 {
-  margin: 2rem 0rem;
-}
-
-.panel {
-  border-radius: 4px;
-  padding: 1rem;
-  justify-content: center;
-  align-items: center;
-  
+#novo{
+  margin-bottom: 0%;
+  margin-top: 10%;
+  margin-left: 70%;
+  font-size: small;}
  
-  &.panel-big-height{
-    min-height: 150px;
-  }
+
+img{
+  max-height: 250px;
+  height: 200px;
+  max-width: 250px;
+  width: 220px; 
+  object-fit: cover;
+  background-color: white;
+}
 }
 
-.item {
-  border-radius: 4px;
-  padding: 25px;
-  padding-top: 0;
-  margin:1%;
-  width: 250px;
-  height: 400px;
-  background-color: white;
-  
-  
-  &.item-big-width{
-    min-width: 380px;
-  }
+// Small devices (landscape phones, 477px and up)
+@media (min-width: 477px) and (max-width: 552px) {
+  #cijena{
+    margin-top:0%;
+    text-align: center;
+    font-size: 130%;
+    font-style:inherit;
+    font-weight: 600;
+    color:#008cba;
 }
+#novo{
+  margin-bottom: 0%;
+  margin-top: 10%;
+  //margin-left: 50%;
+  font-size: small;}
+ 
+
+img{
+  max-height: 250px;
+  height: 250px;
+  max-width: 250px;
+  width: 250px; 
+  object-fit: cover;
+  background-color: white;
+}
+}
+@media (min-width: 553px) and (max-width: 767px) {
+  #cijena{
+    margin-top:0%;
+    text-align: center;
+    font-size: 130%;
+    font-style:inherit;
+    font-weight: 600;
+    color:#008cba;
+}
+#novo{
+  margin-bottom: 0%;
+  margin-top: 10%;
+  //margin-left: 50%;
+  font-size: medium;}
+ 
+
+img{
+  max-height: 350px;
+  height: 300px;
+  max-width: 450px;
+  width: 400px; 
+  object-fit: cover;
+  background-color: white;
+}
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) { 
+  #novo{
+    margin-bottom: 0%;}
+    #cijena{
+      margin-top:10%;}
+    img{
+        max-height: 200px;
+        height: 200px;
+        max-width: 350px;
+        width: 350px; 
+        object-fit: cover;
+        background-color: white;
+      }
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+  img{
+    max-height: 300px;
+    height: 200px;
+    max-width: 300px;
+    width: 200px; 
+    object-fit: cover;
+    background-color: white;
+  }
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+  img{
+    max-height: 450px;
+    height: 400px;
+    max-width: 450px;
+    width: 440px; 
+    object-fit: cover;
+    background-color: white;
+  }
+ }
+
 
