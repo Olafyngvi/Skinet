@@ -1,26 +1,5 @@
-<!-- <section id="sekcija">
-<h1>IZDVOJENO</h1>
-<div class="row">
-    <div class="col-lg-4 col-md-3 col-sm-3">
-        <button type="button" class="btn btn-primary izdvojeno">
-            TRENUTNO IZDVOJENO
-        </button> 
-        <img src="../../../assets/images/cura.jpeg" style="padding: 5% 5% 0% 5%; "/>          
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-3" style="padding: 0;">
-         <img src="../../../assets/images/servis.jpg" style="margin-bottom: 5%;"/>
-         <img src="../../../assets/images/sale.jfif" />
-    </div>
-    <div class="col-lg-4 col-md-3 col-sm-3">
-        <img src="../../../assets/images/aparat.jpg" style="padding: 0 5% 5% 5%;"/> 
-        <a href="shop"><button type="button" class="btn btn-primary izdvojeno">
-            POGLEDAJ SVE
-        </button></a>
-    </div>
- </div>
 
-</section> -->
-<h1>IZDVOJENO</h1>
+<h3>IZDVOJENO</h3>
 <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-4 col-md-3 col-sm-3 col-7">
@@ -36,18 +15,18 @@
       <div class="col-lg-4 col-md-3 col-sm-3 col-7">
        <div class="row">
         <img src="../../../assets/images/servis.jpg" id="servis"/>
-        <button type="button" class="btn servis">SERVIS</button>
+        <a href="/servis" class="servis">SERVIS</a>
        </div>
        
        <div class="row">
         <img src="../../../assets/images/sale.jfif" id="sale" />
-        <button type="button" class="btn akcija">AKCIJA</button>
+        <a href="#" class="akcija">AKCIJA</a>
        </div>
       </div>
       <div class="col-lg-4 col-md-3 col-sm-3 col-7">
         <div class="row">
             <img src="../../../assets/images/aparat.jpg" id="aparat"/>
-            <button type="button" class="btn btn-primary pregled">
+            <button type="button" class="btn btn-primary pregled" [routerLink]="['/shop']">
                 POGLEDAJ SVE
             </button> 
         </div>
