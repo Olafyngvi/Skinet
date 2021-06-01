@@ -1,27 +1,51 @@
-.container1{
+.container-fluid{
     color:gray;
-    width:100%;
-    margin-top: 17%;
-    max-height: 100px;
-    height: 100px;
+    height: auto;
     justify-content: center;
     text-align: center;
 }
-.row{
-    height: auto;
-    
-}
+
 i{
-    float: left;
-    margin-right: 50px;
-}
-#opis{
     float:left;
-}
-#linija{
-        border-left: 1px solid black;
-        height: 50px;
-        position:absolute;
-        float:right;
+    margin-left: auto;
 }
 
+
+
+// // Extra small devices (portrait phones, less than 477px)
+@media (max-width: 477.98px) { 
+
+    #opis{
+        justify-content: center;
+      
+    }
+    i{
+        float: left;
+        margin-left: 50px;
+    }
+    .col-12{
+        margin-bottom: 2%;
+    }
+}
+// Small devices (landscape phones, 477px and up)
+@media (min-width: 477px) and (max-width: 767.98px) { 
+    i{
+        margin-left: 20%;
+    }
+
+}
+@media (min-width: 768px) and (max-width: 1199.98px) { 
+hr{
+    visibility: hidden;
+}}
+@media (min-width: 1200px) {
+    i{
+        float:left;
+        margin-left: 80px;
+    }
+    hr{
+        visibility: hidden;
+    }
+    
+    
+ }
