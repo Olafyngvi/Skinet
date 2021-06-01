@@ -1,8 +1,8 @@
 <div class="container-fluid">
 <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-3 col-4">
-        <button class="btn btn-primary" (click)="isOpen = !isOpen"><i class="fa fa-bars"></i>
-            PROIZVODI
+    <div class="col-lg-2 col-md-2 col-sm-3 col-3">
+        <button class="btn btn-primary proizvodi" (click)="isOpen = !isOpen"><i class="fa fa-bars"></i>
+           <span id="ime"> PROIZVODI</span> 
           </button>
           <ul class="list-group" *ngIf="isOpen">
             <a *ngFor="let type of types" href="#" routerLink="/shop"><li class="list-group-item">{{type.name}}</li></a>

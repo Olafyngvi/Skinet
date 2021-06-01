@@ -29,7 +29,7 @@ img {
     width: 100%;
 }
 .baner{
-    height: 500px;
+    height: auto;
     margin: 10%;
 }
 // Extra small devices (portrait phones, less than 477px)
@@ -43,6 +43,9 @@ img {
     }
     
     .izdvojeno{
+        height: auto;
+    }
+    .novo{
         height: auto;
     }
 }
