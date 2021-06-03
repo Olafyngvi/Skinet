@@ -59,16 +59,14 @@
 
   <div class="d-flex align-items-center">
 
-
-
     <ng-container *ngIf="currentUser$ | async as user">
-      <div class="dropdown ml-3 mr-5" dropdown>
+      <div class="btn-group ml-4" dropdown>
         <a class="dropdown-toggle" style="cursor: pointer" dropdownToggle>
           <strong>Welcome {{ (currentUser$ | async).displayName}}</strong>
         </a>
 
         <div
-          class="dropdown-menu dropdown-menu-right"
+          class="dropdown-menu"
           style="cursor: pointer"
           *dropdownMenu
         >

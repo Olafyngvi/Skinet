@@ -1,7 +1,7 @@
 
 .proizvodi{
     height: 100px;
-    margin-top: 100px;
+    margin-top: 70px;
     
 }
 .shopnow{
@@ -24,13 +24,11 @@ img {
     
 }
 .novo{
-    margin-top: 5%;
-    margin-bottom: 5%;
-    height: 500px;
+    height: auto;
     width: 100%;
 }
 .baner{
-    height: 500px;
+    height: auto;
     margin: 10%;
 }
 // Extra small devices (portrait phones, less than 477px)
@@ -46,6 +44,12 @@ img {
     .izdvojeno{
         height: auto;
     }
+    .novo{
+        height: auto;
+    }
+    .dno{
+        height: auto;
+    }
 }
 
 // Small devices (landscape phones, 477px and up)
@@ -58,6 +62,12 @@ img {
         width:100%;
         height: auto;
         margin-top: 2%;
+    }
+    .izdvojeno{
+        height: auto;
+    }
+    .novo{
+        margin-top: 5%;
     }
 }
     
@@ -72,11 +82,32 @@ img {
            height: auto;
            margin-top: 2%;
        }
+       .izdvojeno{
+        height: auto;
+        }
+        .novo{
+            height: auto;
+        }
+   
 
  }
 
 // Large devices (desktops, 992px and up)
-//@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .izdvojeno{
+        height: auto;
+    }
+    .novo{
+        height: auto;
+    }
+ }
 
 // Extra large devices (large desktops, 1200px and up)
-//@media (min-width: 1200px) { ... }
+@media (min-width: 1200px) { 
+    .izdvojeno{
+        height: auto;
+    .novo{
+        height: auto;
+      
+    }
+}}

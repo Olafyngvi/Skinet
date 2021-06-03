@@ -1,25 +1,8 @@
-.container1{
-    height:750px;
-    background-color: rgb(233, 229, 229);
-    margin-top: 5%;
-}
-#naslov{
-    text-align: center; 
-     padding-top: 2%;
-}
-.row{
-    width: 90%;
-    margin-left: 5%;
-    height: 80%;
-    justify-content: center;
-    align-items: center;
-    
-}
-h3{
-    
-    text-align: center;
-    padding-top: 3%;
-    padding-bottom: 1%;
+h1{
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 1%;
+  font-weight: 300;
 }
 
 #naziv{
@@ -43,13 +26,15 @@ a:hover{
     margin-top:10%;
     margin-bottom: 0;
     margin:50px;
-    font-size: 140%;
+    font-size: 150%;
     font-style:inherit;
     font-weight: 600;
+    margin-left: 10%;
 }
 h6{
     color: red;
     text-decoration:line-through;
+    font-size: 100%;
 }
 h5{
     text-decoration: solid;
@@ -58,50 +43,14 @@ h5{
 }
 
 img{
-      max-height: 300px;
-      height: 300px;
-      max-width: 300px;
-      width: 300px; 
-      object-fit: cover;
-      background-color: white;
-      margin-left: 50px;
-  }
-
-.container {
-  padding: 2rem 0rem;
-}
-
-h4 {
-  margin: 2rem 0rem;
-}
-
-.panel {
-  border-radius: 4px;
-  padding: 1rem;
-  justify-content: center;
-  align-items: center;
+  max-height: 350px;
+  height: auto;
+  max-width: 450px;
+  width: auto; 
+  object-fit: cover;
   
- 
-  &.panel-big-height{
-    min-height: 150px;
-  }
 }
 
-.item {
-  border-radius: 4px;
-  padding: 25px;
-  padding-top: 0;
-  margin:1%;
-  width: 450px;
-  height: 570px;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
-  
-  &.item-big-width{
-    min-width: 380px;
-  }
-}
 
 button {
     border: none;
@@ -113,11 +62,111 @@ button {
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
-    width: 90%;
+    width: 100%;
     font-size: 18px;
     margin-top: -80px;
+    margin-bottom: 2%;
   }
   
   button:hover {
     opacity: 0.7;
   }
+
+  @media (max-width: 437px){
+    img{
+      max-height: 300px;
+      height: auto;
+      max-width: 350px;
+      width: auto; 
+      object-fit: cover;
+      background-color: white;
+    }
+   
+      #cijena{
+        margin-top:5%;
+        margin-bottom: 5%;
+        margin-left: 5%;
+      }
+      button{
+       width: 60%;
+       margin-left: 20%;
+        margin-bottom: 5%;
+      }
+      h6{
+        font-size: large;
+      }
+      h5{
+        font-size: x-large;
+      }
+      h3{
+        font-weight: 200;
+      }
+    }
+  // Extra small devices (portrait phones, less than 477px)
+  @media (min-width: 437px) and(max-width: 477.98px) { 
+    img{
+      max-height: 350px;
+      height: auto;
+      max-width: 400px;
+      width: auto; 
+      object-fit: cover;
+      background-color: white;
+    }
+  button{
+    width: 60%;
+    margin-left: 20%;
+    margin-bottom: 5%;
+  }
+  #cijena{
+    margin-bottom: 5%;
+  }
+  h3{
+    font-weight: 200;
+  }
+}
+
+// Small devices (landscape phones, 477px and up)
+@media (min-width: 477px) and (max-width: 552px) {
+  img{
+    max-height: 350px;
+    height: auto;
+    max-width: 400px;
+    width: auto; 
+    object-fit: fill;
+    background-color: white;
+  }
+  button{
+    margin-bottom: 5%;
+  }
+}
+@media (min-width: 576px) and (max-width: 730px) {
+  img{
+    max-height: 350px;
+    height: auto;
+    max-width: 400px;
+    width: auto; 
+    object-fit: cover;
+    background-color: white;
+  }
+#cijena{
+    margin-top: 5%;
+    margin-left: 0;
+    margin-bottom: 10%;
+  font-size:small;
+  h5{
+    margin-top: 5px;
+  } }
+
+}
+@media (min-width: 731px) and (max-width: 991.98px) {
+  #cijena{
+    font-size: medium;
+    margin-left: -1px;
+    margin-top: 5%;
+    margin-bottom: 10%;
+  }
+  h5{
+    margin-top: 10px;
+  }
+ 
+ }
