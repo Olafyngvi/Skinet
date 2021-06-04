@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResetPasswordDto } from '../../shared/models/ResetPasswordDto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../account.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PasswordConfirmationValidatorService } from 'src/app/shared/password-confirmation-validator.service';
@@ -21,7 +21,8 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private passConfValidator: PasswordConfirmationValidatorService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.resetPasswordForm = new FormGroup({
@@ -55,10 +56,14 @@ export class ResetPasswordComponent implements OnInit {
     this.accountService.resetPassword(resetPassDto)
     .subscribe(_ => {
       this.showSuccess = true;
+      setTimeout(() => {
+        this.router.navigate(['/account/login']);
+      }, 3000);
     },
     error => {
+      console.log(error);
       this.showError = true;
-      this.errorMessage = error;
+      this.errorMessage = error.error.errors;
     });
   }
 }

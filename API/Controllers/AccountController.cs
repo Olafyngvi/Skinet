@@ -131,11 +131,14 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
-            if (user == null) return Unauthorized(new ApiResponse(401));
+            if (user == null) return Unauthorized(new { Errors = "Pogrešno korisničko ime ili lozinka" });
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            if (!result.Succeeded) return Unauthorized(new ApiResponse(401));
+            if (!result.Succeeded)
+            {
+				return Unauthorized(new { Errors = "Pogrešno korisničko ime ili lozinka" });
+			}
 
             return new UserDto
             {
@@ -186,7 +189,7 @@ namespace API.Controllers
         {
             if (CheckEmailExistsAsync(registerDto.Email).Result.Value)
             {
-                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" } });
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email adresa je zauzeta" } });
             }
 
             var user = new AppUser
@@ -198,8 +201,8 @@ namespace API.Controllers
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            if (!result.Succeeded) return BadRequest(new ApiResponse(400));
-
+            if (!result.Succeeded) return BadRequest();
+            
             var roleAddResult = await _userManager.AddToRoleAsync(user, "Member");
 
             if (!roleAddResult.Succeeded) return BadRequest("Failed to add to role");

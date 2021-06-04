@@ -7,13 +7,16 @@ namespace API.Dtos
 {
     public class LoggedResetPasswordDto
     {
-        [Required(ErrorMessage = "Password is required")]
+        [Required(ErrorMessage = "Lozinka je obavezna")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "New Password is required")]
+        [Required]
+        [RegularExpression("^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]{6,64}$", 
+            ErrorMessage = "Lozinka može sadržavati slova i brojeve i mora sadržavati barem 6 karaktera")]
         public string NewPassword { get; set; }
 
-        [Required(ErrorMessage = "Email is required")]
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
     }

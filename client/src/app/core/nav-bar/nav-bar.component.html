@@ -71,7 +71,7 @@
           *dropdownMenu
         >
           <a
-            routerLink="/account/loggedresetpassword/{{this.mail}}"
+            routerLink="/account/loggedresetpassword/{{(currentUser$ | async).email}}"
             class="dropdown-item d-flex align-items-center py-2"
           >
             <i class="fa fa-unlock mr-3"></i> Reset Password

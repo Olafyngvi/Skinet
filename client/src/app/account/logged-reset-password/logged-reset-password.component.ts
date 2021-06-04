@@ -52,11 +52,15 @@ export class LoggedResetPasswordComponent implements OnInit {
 
     this.accountService.loggedResetPassword(resetPassDto)
     .subscribe(() => {
-      this.accountService.logoutPasswordReset();
+      this.showSuccess = true;
+      setTimeout(() => {
+        this.accountService.logoutPasswordReset();
+      }, 3000);
     },
     error => {
       this.showError = true;
-      this.errorMessage = error;
+      this.errorMessage = error.error.errors;
+      console.log(error);
     });
   }
 }

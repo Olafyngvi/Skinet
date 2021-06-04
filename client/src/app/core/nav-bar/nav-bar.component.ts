@@ -18,18 +18,13 @@ export class NavBarComponent implements OnInit {
   currentUser$: Observable<IUser>;
   isAdmin$: Observable<boolean>;
   public isOpen = false;
-  mail: string;
 
   constructor(
     private cds: ConfirmationDialogService,
     private basketService: BasketService,
     private accountService: AccountService,
     private router: Router
-  ) {
-    this.accountService.currentUser$.subscribe(user => {
-      this.mail = user.email;
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     this.basket$ = this.basketService.basket$;
