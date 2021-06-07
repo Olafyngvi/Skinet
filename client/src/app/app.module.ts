@@ -23,6 +23,7 @@ import { SocialLoginModule, GoogleLoginProvider, AuthServiceConfig} from 'angula
 import { SlideshowComponent } from './servis/slideshow/slideshow.component';
 import { FiskalizacijaComponent } from './servis/fiskalizacija/fiskalizacija.component';
 import { PolovnoComponent } from './servis/polovno/polovno.component';
+import { FooterComponent } from './servis/footer/footer.component';
 
 const config = new AuthServiceConfig([
   {
@@ -48,6 +49,7 @@ export function tokenGetter() {
     SlideshowComponent,
     FiskalizacijaComponent,
     PolovnoComponent,
+    FooterComponent,
 
   ],
   imports: [
