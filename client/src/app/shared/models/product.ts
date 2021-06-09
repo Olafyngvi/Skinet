@@ -3,6 +3,7 @@ export interface IProduct {
   name: string;
   description: string;
   price: number;
+  sifra: string;
   oldPrice: number;
   pictureUrl: string;
   productType: string;
@@ -34,6 +35,7 @@ export class ProductFormValues implements IProductToCreate {
   name = '';
   description = '';
   price = 0;
+  sifra = '';
   oldPrice = 0;
   pictureUrl = '';
   productBrandId: number;

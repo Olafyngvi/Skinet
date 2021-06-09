@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-3">
         <ng-container *ngIf="types && brands">
-          <h5 class="text-warning ml-3 mt-3 mb-4">Sort</h5>
+          <h5 class="text-warning ml-3 mt-3 mb-4">Sortiraj</h5>
           <select class="custom-select mb-4" (change)="onSortSelected($event.target.value)">
               <option *ngFor="let sort of sortOptions"
                   [selected]="shopParams.sort === sort.value"
@@ -12,7 +12,7 @@
               </option>
           </select>
 
-          <h5 class="text-warning ml-3">Brands</h5>
+          <h5 class="text-warning ml-3">Marke</h5>
           <ul class="list-group mb-3">
               <li class="list-group-item" *ngFor="let brand of brands"
                   [class.active]="brand.id === shopParams.brandId" [value]="brand.id"
@@ -20,7 +20,7 @@
                   {{brand.name}}
               </li>
           </ul>
-          <h5 class="text-warning ml-3">Types</h5>
+          <h5 class="text-warning ml-3">Tipovi</h5>
           <ul class="list-group my-3">
               <li class="list-group-item" *ngFor="let type of types"
                   [class.active]="type.id === shopParams.typeId" [value]="type.id"
@@ -33,15 +33,15 @@
       <div class="col-lg-9">
         <div class="d-flex justify-content-between my-3">
           <div class="form-inline" *ngIf="products">
-            <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Search">
-            <button (click)="onSearch()" class="btn btn-outline-primary my-2">Search</button>
-            <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
+            <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Pretraga">
+            <button (click)="onSearch()" class="btn btn-outline-primary my-2">Pretraži</button>
+            <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Poništi filtere</button>
         </div>
           <button
             [routerLink]="['/admin/create']"
             class="btn btn-outline-success"
           >
-            Create new product
+            Dodaj novi proizvod
           </button>
         </div>
 
@@ -59,22 +59,22 @@
                   <div class="p-2">Id</div>
                 </th>
                 <th scope="col">
-                  <div class="p-2 text-uppercase">Product</div>
+                  <div class="p-2 text-uppercase">Proizvod</div>
                 </th>
                 <th scope="col">
-                  <div class="py-2 text-uppercase">Name</div>
+                  <div class="py-2 text-uppercase">Naziv</div>
                 </th>
                 <th scope="col">
-                  <div class="p-2 px-3 text-uppercase">Price</div>
+                  <div class="p-2 px-3 text-uppercase">Cijena</div>
                 </th>
                 <th scope="col">
                   <div class="p-2 px-3 text-uppercase">Izdvojen</div>
                 </th>
                 <th scope="col">
-                  <div class="p-2 px-3 text-uppercase">Edit</div>
+                  <div class="p-2 px-3 text-uppercase">Izmjeni</div>
                 </th>
                 <th scope="col">
-                  <div class="p-2 px-3 text-uppercase">Delete</div>
+                  <div class="p-2 px-3 text-uppercase">Obriši</div>
                 </th>
               </tr>
             </thead>
@@ -103,7 +103,7 @@
                     [routerLink]="['edit', product.id]"
                     class="btn btn-warning"
                   >
-                    Edit
+                  Izmjeni
                   </button>
                 </td>
                 <td class="align-middle">
@@ -111,7 +111,7 @@
                     (click)="deleteProduct(product.id)"
                     class="btn btn-danger"
                   >
-                    Delete
+                    Obriši
                   </button>
                 </td>
               </tr>

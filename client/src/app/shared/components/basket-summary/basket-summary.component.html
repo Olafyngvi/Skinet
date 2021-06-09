@@ -4,19 +4,19 @@
             <thead [class.thead-light]="isBasket || isOrder" class="border-0 py-2">
                 <tr>
                     <th scope="col" >
-                        <div class="p-2 px-3 text-uppercase">Product</div>
+                        <div class="p-2 px-3 text-uppercase">Proizvod</div>
                     </th>
                     <th scope="col">
-                        <div class="py-2 text-uppercase">Price</div>
+                        <div class="py-2 text-uppercase">Cijena</div>
                     </th>
                     <th scope="col">
-                        <div class="py-2 text-uppercase">Quantity</div>
+                        <div class="py-2 text-uppercase">Količina</div>
                     </th>
                     <th scope="col">
-                        <div class="py-2 text-uppercase">Total</div>
+                        <div class="py-2 text-uppercase">Ukupno</div>
                     </th>
                     <th *ngIf="isBasket" scope="col" class="border-0">
-                        <div class="py-2 text-uppercase">Remove</div>
+                        <div class="py-2 text-uppercase">Obriši</div>
                     </th>
                 </tr>
             </thead>
@@ -33,13 +33,13 @@
                                 </h5>
                                 <span
                                     *ngIf="item.type"
-                                    class="text-muted font-weight-normal font-italic d-block">Type:
+                                    class="text-muted font-weight-normal font-italic d-block">Tip:
                                     {{item.type}}</span>
                             </div>
 
                         </div>
                     </th>
-                    <td class="align-middle"><strong>{{item.price | currency}}</strong></td>
+                    <td class="align-middle"><strong>{{item.price | currency: 'KM':'symbol':undefined:'fr'}}</strong></td>
                     <td class="align-middle">
                         <div class="d-flex align-items-center" [class.justify-content-center]="!isBasket">
                             <i *ngIf="isBasket" (click)="decrementItemQuantity(item)" class="fa fa-minus-circle text-warning mr-2"
@@ -52,7 +52,7 @@
                         </div>
                     </td>
                     <td class="align-middle">
-                        <strong>{{item.price * item.quantity | currency}}</strong></td>
+                        <strong>{{item.price * item.quantity | currency: 'KM':'symbol':undefined:'fr'}}</strong></td>
                     <td class="align-middle text-center">
                         <a class="text-danger">
                             <i *ngIf="isBasket" (click)="removeBasketItem(item)" class="fa fa-trash" style="font-size: 2em; cursor: pointer;"></i>

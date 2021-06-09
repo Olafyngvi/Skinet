@@ -8,7 +8,7 @@
         >
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="name">Product Name</label>
+              <label for="name">Naziv proizvoda</label>
               <input
                 [ngClass]="{
                   'is-invalid': name.invalid && (name.dirty || name.touched)
@@ -17,7 +17,7 @@
                 type="text"
                 class="form-control"
                 id="name"
-                placeholder="Product Name"
+                placeholder="Naziv proizvoda"
                 name="name"
                 #name="ngModel"
                 [(ngModel)]="product.name"
@@ -26,11 +26,23 @@
                 *ngIf="name.invalid && (name.dirty || name.touched)"
                 class="invalid-feedback"
               >
-                <div *ngIf="name.errors.required">Product Name is required</div>
+                <div *ngIf="name.errors.required">Naziv proizvoda je obavezan</div>
               </div>
             </div>
+              <div class="form-group col-md-12">
+                <label for="name">Šifra</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="sifra"
+                  placeholder="Šifra"
+                  name="sifra"
+                  #sifra="ngModel"
+                  [(ngModel)]="product.sifra"
+                />
+              </div>
             <div class="form-group col-md-6">
-              <label for="oldPrice">Old Price</label>
+              <label for="oldPrice">Stara cijena</label>
               <input
                 [ngClass]="{
                   'is-invalid': price.invalid && (price.dirty || price.touched)
@@ -38,7 +50,7 @@
                 type="text"
                 class="form-control"
                 id="oldPrice"
-                placeholder="Old Price"
+                placeholder="Stara cijena"
                 currencyMask
                 name="oldPrice"
                 #oldPrice="ngModel"
@@ -50,15 +62,15 @@
                 class="invalid-feedback"
               >
                 <div *ngIf="price.errors.pattern">
-                  Product price needs to be decimal value
+                  Cijena mora biti decimalna vrijednost
                 </div>
                 <div *ngIf="price.errors.min">
-                  Product price must be greater than zero
+                  Cijena mora biti veća od nule
                 </div>
               </div>
             </div>
             <div class="form-group col-md-6">
-              <label for="price">Price</label>
+              <label for="price">Cijena</label>
               <input
                 [ngClass]="{
                   'is-invalid': price.invalid && (price.dirty || price.touched)
@@ -67,7 +79,7 @@
                 type="text"
                 class="form-control"
                 id="price"
-                placeholder="Price"
+                placeholder="Cijena"
                 currencyMask
                 name="price"
                 #price="ngModel"
@@ -80,20 +92,20 @@
                 class="invalid-feedback"
               >
                 <div *ngIf="price.errors.required">
-                  Product price is required
+                  Cijena je obavezna
                 </div>
                 <div *ngIf="price.errors.pattern">
-                  Product price needs to be decimal value
+                  Cijena mora biti decimalna vrijednost
                 </div>
                 <div *ngIf="price.errors.min">
-                  Product price must be greater than zero
+                  Cijena mora biti veća od nule
                 </div>
               </div>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-12">
-              <label for="description">Description</label>
+              <label for="description">Opis</label>
               <ejs-richtexteditor id='iframeRTE'
               [toolbarSettings]='tools'
               [iframeSettings]='iframe'
@@ -111,7 +123,7 @@
             </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="brand">Brand</label>
+              <label for="brand">Marka</label>
               <select
                 id="brand"
                 class="form-control"
@@ -129,7 +141,7 @@
               </select>
             </div>
             <div class="form-group col-md-6">
-              <label for="type">Type</label>
+              <label for="type">Tip</label>
               <select
                 id="type"
                 class="form-control"
@@ -147,7 +159,7 @@
               </select>
             </div>
             <div class="form-group col-md-12">
-              <label for="stock">Stock</label>
+              <label for="stock">Stanje</label>
               <div class="d-flex justify-content-between">
                 <i
                   (click)="decrementItemQuantity()"
@@ -179,10 +191,10 @@
                   class="invalid-feedback"
                 >
                   <div *ngIf="stock.errors.required">
-                    Product stock is required
+                    Stanje je obavezno
                   </div>
                   <div *ngIf="stock.errors.pattern">
-                    Product stock needs to be decimal value
+                    Stanje mora biti brojčana vrijednost
                   </div>
                 </div>
               </div>
@@ -193,7 +205,7 @@
             type="submit"
             class="btn btn-primary my-3 float-right"
           >
-            Submit
+            Spremi
           </button>
         </form>
       </div>

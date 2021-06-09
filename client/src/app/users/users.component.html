@@ -30,25 +30,25 @@
                 type="text"
                 class="form-control mr-2"
                 #search
-                placeholder="Search"
+                placeholder="Pretraga"
               />
               <button (click)="onSearch()" class="btn btn-outline-primary my-2">
-                Search
+                Pretraži
               </button>
               <button
                 (click)="onReset()"
                 class="btn btn-outline-success ml-2 my-2"
               >
-                Reset
+                Poništi filtere
               </button>
             </div>
           </div>
         </div>
       </div>
       <div class="d-flex justify-content-between mt-5 mb-3 px-4">
-        <span class="flex-fill"><strong>Display name</strong></span>
-        <span class="flex-fill"><strong>Email address</strong></span>
-        <span class="flex-fill"><strong>Address</strong></span>
+        <span class="flex-fill"><strong>Ime</strong></span>
+        <span class="flex-fill"><strong>Email adresa</strong></span>
+        <span class="flex-fill"><strong>Adresa</strong></span>
       </div>
       <div class="mb-5">
         <ng-container>
@@ -58,7 +58,7 @@
                 <div class="flex-fill"><strong>{{ user.displayName }}</strong></div>
                 <div class="flex-fill">{{ user.email }}</div>
                 <div *ngIf="user.address" class="flex-fill">{{ user.address }}</div>
-                <div *ngIf="!user.address" class="flex-fill">N/A</div>
+                <div *ngIf="!user.address" class="flex-fill"></div>
               </div>
               <div class="row">
                 <div *ngIf="user.address" class="col-2 border-right">
@@ -75,8 +75,8 @@
                   <hr>
                   <p>{{ user.phone }}</p>
                 </div>
-                <div *ngIf="!user.address" class="col-2 border-right">
-                  <strong>No Address</strong>
+                <div *ngIf="!user.address" class="col-3">
+                  <strong>Korisnik nije spremio adresu</strong>
                 </div>
                 <div *ngIf="!user.address" class="col-3">
                 </div>
@@ -85,7 +85,7 @@
                       class="btn btn-primary pull-right"
                       routerLink="/orders/{{btoa(user.email)}}/{{btoa(user.displayName)}}"
                     >
-                      Orders
+                      Narudžbe
                     </button>
                 </div>
               </div>

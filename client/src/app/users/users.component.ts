@@ -18,8 +18,8 @@ export class UsersComponent implements OnInit {
   usersParams: UsersParams;
   totalCount: number;
   sortOptions = [
-    { name: 'Alphabetical Ascending', value: 'nameAsc' },
-    { name: 'Alphabetical Descending', value: 'nameDesc' },
+    { name: 'Abecedno A-Z', value: 'nameAsc' },
+    { name: 'Abecedno Z-A', value: 'nameDesc' },
   ];
 
   constructor(private adminService: AdminService,

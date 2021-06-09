@@ -4,7 +4,7 @@
       <div class="col-12">
         <div class="tab-panel">
           <tabset class="product-tabset">
-            <tab heading="Edit Product">
+            <tab heading="Proizvod">
               <div class="col-lg-8">
                 <app-product-form
                   [product]="productFormValues"
@@ -13,7 +13,7 @@
                 ></app-product-form>
               </div>
             </tab>
-            <tab [disabled]="novi" heading="Edit Photos">
+            <tab [disabled]="novi" heading="Slike">
               <app-edit-product-photos
                 [product]="product"
               ></app-edit-product-photos>

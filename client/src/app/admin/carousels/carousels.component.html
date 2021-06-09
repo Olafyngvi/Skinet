@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-3">
         <button class="btn btn-primary mb-3" (click)="addPhotoModeToggle()">
-          Add New Photo
+          Dodaj novu sliku
         </button>
       </div>
     </div>
@@ -31,12 +31,12 @@
   </div>
   <ng-container *ngIf="addPhotoMode">
     <div class="d-flex justify-content-between mb-3">
-      <h3 class="text-primary">Add new product image</h3>
+      <h3 class="text-primary">Dodavanje nove slike</h3>
       <button
         class="btn btn-outline-secondary"
         (click)="addPhotoModeToggle()"
       >
-        Cancel
+        Odustani
       </button>
     </div>
     <div class="progress form-group" *ngIf="progress > 0">

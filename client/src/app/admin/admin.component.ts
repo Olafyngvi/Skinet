@@ -21,9 +21,9 @@ export class AdminComponent implements OnInit {
   totalCount: number;
   shopParams: ShopParams;
   sortOptions = [
-    { name: 'Alphabetical', value: 'name' },
-    { name: 'Price: Low to high', value: 'priceAsc' },
-    { name: 'Price: High to low', value: 'priceDesc' },
+    { name: 'Abecedno', value: 'name' },
+    { name: 'Cijena: Niža prema višoj', value: 'priceAsc' },
+    { name: 'Cijena: Viša prema nižoj', value: 'priceDesc' },
   ];
 
   constructor(
@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
     // tslint:disable-next-line: deprecation
     this.shopService.getBrands().subscribe(
       (response) => {
-        this.brands = [{ id: 0, name: 'All' }, ...response];
+        this.brands = [{ id: 0, name: 'Sve' }, ...response];
       },
       (error) => {
         console.log(error);
@@ -71,7 +71,7 @@ export class AdminComponent implements OnInit {
     // tslint:disable-next-line: deprecation
     this.shopService.getTypes().subscribe(
       (response) => {
-        this.types = [{ id: 0, name: 'All' }, ...response];
+        this.types = [{ id: 0, name: 'Svi' }, ...response];
       },
       (error) => {
         console.log(error);
