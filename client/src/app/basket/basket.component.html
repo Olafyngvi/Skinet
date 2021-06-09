@@ -1,6 +1,6 @@
 <div class="container mt-2">
     <div *ngIf="(basket$ | async) === null">
-        <p>There are no items in your basket</p>
+        <p>Vaša korpa je prazna</p>
     </div>
 
     <div *ngIf="basket$ | async">
@@ -26,7 +26,7 @@
                             [total]="(basketTotals$ | async).total"
                         ></app-order-totals>
                         <a routerLink="/checkout" class="btn btn-outline-primary py-2 btn-block">
-                            Proceed to checkout
+                            Završi narudžbu
                         </a>
                     </div>
                 </div>
