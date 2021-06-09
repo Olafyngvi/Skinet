@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dtos;
@@ -18,6 +22,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+    [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     public class AccountController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
@@ -197,21 +202,14 @@ namespace API.Controllers
 
             var roleAddResult = await _userManager.AddToRoleAsync(user, "Member");
 
-            if (!roleAddResult.Succeeded) return BadRequest("Failed to add to role");
-
-            return new UserDto
-            {
-                DisplayName = user.DisplayName,
-                Token = await _tokenService.CreateToken(user),
-                Email = user.Email
-            };
+        return new UserDto
+        {
+            DisplayName = user.DisplayName,
+            Token = await _tokenService.CreateToken(user),
+            Email = user.Email
+        };
         }
-
-
-
-
-
-
-
     }
 }
+
+

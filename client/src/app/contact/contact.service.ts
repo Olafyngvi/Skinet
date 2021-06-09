@@ -15,4 +15,5 @@ export class ContactService {
   getMessage(contact: Contact) {
     return this.http.post(this.baseUrl + 'contact', contact);
   }
+
 }

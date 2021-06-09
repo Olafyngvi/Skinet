@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit {
     // });
   // }
 
-  onSubmit(form: NgForm): void {
+ onSubmit(form: NgForm): void {
     if (form.invalid) {
       console.log(form.invalid);
     } else {
@@ -44,4 +44,5 @@ export class ContactComponent implements OnInit {
     });
     }
   }
+
 }

@@ -25,8 +25,8 @@ namespace API.Controllers
           {
             await _mailService.SendWelcomeEmailAsync(contact);
             return Ok();
-          }catch(Exception ex)
-          {
+          } catch (Exception)
+            {
             throw;
           }
             
