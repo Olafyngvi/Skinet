@@ -11,7 +11,7 @@ import { IProduct } from './shared/models/product';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'SkiNet';
+  title = 'Drinex Computers';
 
   constructor(private basketService: BasketService, private accountService: AccountService) { }
 

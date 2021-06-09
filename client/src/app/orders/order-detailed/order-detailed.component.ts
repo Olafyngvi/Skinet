@@ -53,6 +53,7 @@ export class OrderDetailedComponent implements OnInit {
           // tslint:disable-next-line: deprecation
           .subscribe(
             (order: IOrder) => {
+              console.log(order);
               this.order = order;
               this.breadcrumbService.set(
                 '@OrderDetailed',

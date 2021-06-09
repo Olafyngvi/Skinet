@@ -33,7 +33,8 @@ namespace Infrastructure.Services
             var items = new List<OrderItem>();
             foreach (var item in basket.Items)
             {
-                var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
+                var spec = new ProductWithPhotosSpecification(item.Id);
+                var productItem = await _unitOfWork.Repository<Product>().GetEntityWithSpec(spec);
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.Photos.SingleOrDefault(x => Convert.ToInt32(x.IsMain) == 1)?.PictureUrl);
                 mailOrderContent.Append($"<tr style=\"border-collapse:collapse\"><td width=\"80%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{productItem.Name}</h4></td><td width=\"20%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;float:left;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{item.Price} KM</h4></td><td width=\"20%\" style=\"padding:0;Margin:0\"><h4 style=\"Margin:0;line-height:120%;mso-line-height-rule:exactly;font-family:'open sans', 'helvetica neue', helvetica, arial, sans-serif\">{item.Quantity}</h4></td></tr> ");
                 var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
