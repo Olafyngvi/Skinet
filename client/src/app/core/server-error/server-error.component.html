@@ -1,18 +1,18 @@
 <div class="container mt-5">
-    <h4>Internal server error - refreshing the page will make the exception disapper</h4>
+    <h4>Interna greška servera - osvježavanjem stranice učinit će da izuzetak nestane</h4>
     <ng-container *ngIf="error">
         <h5 class="text-danger">Error: {{error.message}}</h5>
-        <p class="font-weight-bold">Note: if you are seeing this then Angular is probably not responsible</p>
-        <p>What to do next?</p>
+        <p class="font-weight-bold">Napomena: ako vidite ovo, Angular vjerovatno nije odgovoran</p>
+        <p>Šta dalje?</p>
         <ol>
-            <li>Open chrome dev tools</li>
-            <li>Inspect the network tab</li>
-            <li>Check the failing request</li>
-            <li>Examine this request URL - make sure this is correct</li>
-            <li>Reproduce the error in postman - if we get the same response in postman, then the issue is NOT with
-                angular</li>
+            <li>Otvorite chrome dev alate</li>
+            <li>Pregledajte karticu mreže</li>
+            <li>Provjerite neuspjeli zahtjev</li>
+            <li>Ispitajte URL ovog zahtjeva - provjerite je li to tačno</li>
+            <li>Reproducirajte grešku u poštaru - ako dobijemo isti odgovor kod poštara, onda problem NIJE
+                ugaona</li>
         </ol>
-        <p>Following is the stack trace - this is where your investigation should start!</p>
+        <p>Slijedi trag steka - ovdje bi trebala započeti vaša istraga!</p>
         <code class="mt-5" style="background-color: whitesmoke;">{{error.details}}</code>
     </ng-container>
 </div>
