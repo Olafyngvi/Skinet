@@ -20,6 +20,10 @@ import { SuccessfulComponent } from './contact/successful.component';
 import { ServisComponent } from './servis/servis.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SocialLoginModule, GoogleLoginProvider, AuthServiceConfig} from 'angularx-social-login';
+import { SlideshowComponent } from './servis/slideshow/slideshow.component';
+import { FiskalizacijaComponent } from './servis/fiskalizacija/fiskalizacija.component';
+import { PolovnoComponent } from './servis/polovno/polovno.component';
+import { FooterComponent } from './servis/footer/footer.component';
 
 const config = new AuthServiceConfig([
   {
@@ -42,6 +46,10 @@ export function tokenGetter() {
     ContactComponent,
     SuccessfulComponent,
     ServisComponent,
+    SlideshowComponent,
+    FiskalizacijaComponent,
+    PolovnoComponent,
+    FooterComponent,
 
   ],
   imports: [
