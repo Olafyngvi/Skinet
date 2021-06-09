@@ -18,9 +18,9 @@ export class ShopComponent implements OnInit {
   shopParams: ShopParams;
   totalCount: number;
   sortOptions = [
-    {name: 'Alphabetical', value: 'name'},
-    {name: 'Price: Low to high', value: 'priceAsc'},
-    {name: 'Price: High to low', value: 'priceDesc'},
+    {name: 'Abecedno', value: 'name'},
+    {name: 'Cijena: niža prema višoj', value: 'priceAsc'},
+    {name: 'Cijena: viša prema nižoj', value: 'priceDesc'},
   ];
 
   constructor(private shopService: ShopService) {
@@ -48,7 +48,7 @@ export class ShopComponent implements OnInit {
   getBrands() {
     // tslint:disable-next-line: deprecation
     this.shopService.getBrands().subscribe(response => {
-      this.brands = [{id: 0, name: 'All'}, ...response];
+      this.brands = [{id: 0, name: 'Svi'}, ...response];
     }, error => {
       console.log(error);
     });
@@ -58,7 +58,7 @@ export class ShopComponent implements OnInit {
   getTypes() {
     // tslint:disable-next-line: deprecation
     this.shopService.getTypes().subscribe(response => {
-      this.types = [{id: 0, name: 'All'}, ...response];
+      this.types = [{id: 0, name: 'Svi'}, ...response];
     }, error => {
       console.log(error);
     });

@@ -18,8 +18,8 @@
           class="p-2"
           [routerLink]="['/']"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }" >Home</a>
-         <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
+          [routerLinkActiveOptions]="{ exact: true }" >Početna</a>
+         <a class="p-2" routerLink="/shop" routerLinkActive="active">Prodavnica</a>
         <a class="p-2" routerLink="/servis" routerLinkActive="active">Servis</a>
         <a class="p-2" routerLink="/contact" routerLinkActive="active">Kontakt</a></li>
       </ul>
@@ -27,7 +27,7 @@
         <li id="ikone"><a routerLink="/basket" class="position-relative">
           <i class="fa fa-shopping-cart fa-2x "></i>
           <div *ngIf="basket$ | async as basket">
-             {{ basket.items.length }} 
+             {{ basket.items.length }}
           </div>
         </a>
            <ng-container *ngIf="(currentUser$ | async) === null">
@@ -62,7 +62,7 @@
     <ng-container *ngIf="currentUser$ | async as user">
       <div class="btn-group ml-4" dropdown>
         <a class="dropdown-toggle" style="cursor: pointer" dropdownToggle>
-          <strong>Welcome {{ (currentUser$ | async).displayName}}</strong>
+          <strong>Dobro došao {{ (currentUser$ | async).displayName}}</strong>
         </a>
 
         <div
@@ -86,7 +86,7 @@
             routerLink="/orders"
             class="dropdown-item d-flex align-items-center py-2"
           >
-            <i class="fa fa-history mr-3"></i> Pregledaj narudžbu
+            <i class="fa fa-history mr-3"></i> Pregledaj svoje narudžbe
           </a>
           <a
             *ngIf="isAdmin$ | async"
@@ -100,7 +100,7 @@
             routerLink="/users"
             class="dropdown-item d-flex align-items-center py-2"
           >
-          <i class="fa fa-users mr-3"></i>Pregledaj sve korisnike 
+          <i class="fa fa-users mr-3"></i>Pregledaj sve korisnike
           </a>
           <a
             *ngIf="isAdmin$ | async"
@@ -114,7 +114,7 @@
             (click)="logout()"
             class="dropdown-item d-flex align-items-center py-2"
           >
-            <i class="fa fa-sign-out mr-3"></i> Odjavi se 
+            <i class="fa fa-sign-out mr-3"></i> Odjavi se
           </a>
         </div>
       </div>

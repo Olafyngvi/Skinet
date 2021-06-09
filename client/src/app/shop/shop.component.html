@@ -35,9 +35,9 @@
                     [pageSize]="shopParams.pageSize"></app-paging-header>
 
                 <div class="form-inline mt-2" *ngIf="products">
-                    <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Search">
+                    <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Pretraga">
                     <button (click)="onSearch()" class="btn btn-outline-primary my-2">Pretraži</button>
-                    <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Ponovi</button>
+                    <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Poništi filtere</button>
                 </div>
             </div>
 

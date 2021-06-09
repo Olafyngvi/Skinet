@@ -12,7 +12,7 @@
               </option>
           </select>
 
-          <h5 class="text-warning ml-3">Marke</h5>
+          <h5 class="text-warning ml-3">Brend</h5>
           <ul class="list-group mb-3">
               <li class="list-group-item" *ngFor="let brand of brands"
                   [class.active]="brand.id === shopParams.brandId" [value]="brand.id"
@@ -20,7 +20,7 @@
                   {{brand.name}}
               </li>
           </ul>
-          <h5 class="text-warning ml-3">Tipovi</h5>
+          <h5 class="text-warning ml-3">Vrsta</h5>
           <ul class="list-group my-3">
               <li class="list-group-item" *ngFor="let type of types"
                   [class.active]="type.id === shopParams.typeId" [value]="type.id"
