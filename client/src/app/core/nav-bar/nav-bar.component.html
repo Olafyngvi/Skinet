@@ -34,11 +34,11 @@
           <a
             class="login"
             routerLink="/account/login"
-            href="#"> <i class="fa fa-user"></i>Login</a>
+            href="#"> <i class="fa fa-user"></i>Prijavi se</a>
           <a
             class="register"
             routerLink="/account/register"
-            href="#"> <i class="fa fa-key"></i> Sign up</a>
+            href="#"> <i class="fa fa-key"></i>Registracija</a>
 
            </ng-container>
            </li>
@@ -74,47 +74,47 @@
             routerLink="/account/loggedresetpassword/{{(currentUser$ | async).email}}"
             class="dropdown-item d-flex align-items-center py-2"
           >
-            <i class="fa fa-unlock mr-3"></i> Reset Password
+            <i class="fa fa-unlock mr-3"></i> Ponovno postavi lozinku
           </a>
           <a
             routerLink="/basket"
             class="dropdown-item d-flex align-items-center py-2"
           >
-            <i class="fa fa-shopping-cart mr-3"></i> View Basket
+            <i class="fa fa-shopping-cart mr-3"></i> Pregledaj korpu
           </a>
           <a
             routerLink="/orders"
             class="dropdown-item d-flex align-items-center py-2"
           >
-            <i class="fa fa-history mr-3"></i> View Your Orders
+            <i class="fa fa-history mr-3"></i> Pregledaj narudžbu
           </a>
           <a
             *ngIf="isAdmin$ | async"
             routerLink="/orders/all"
             class="dropdown-item d-flex align-items-center py-2"
           >
-            <i class="fa fa-address-card mr-3"></i> View All Orders
+            <i class="fa fa-address-card mr-3"></i> Pregledaj sve narudžbe
           </a>
           <a
             *ngIf="isAdmin$ | async"
             routerLink="/users"
             class="dropdown-item d-flex align-items-center py-2"
           >
-          <i class="fa fa-users mr-3"></i>View all users
+          <i class="fa fa-users mr-3"></i>Pregledaj sve korisnike 
           </a>
           <a
             *ngIf="isAdmin$ | async"
             routerLink="admin/carousel"
             class="dropdown-item d-flex align-items-center py-2"
           >
-          <i class="fa fa-image mr-3"></i>Carousel
+          <i class="fa fa-image mr-3"></i>Galerija
           </a>
           <div class="dropdown-divider"></div>
           <a
             (click)="logout()"
             class="dropdown-item d-flex align-items-center py-2"
           >
-            <i class="fa fa-sign-out mr-3"></i> Logout
+            <i class="fa fa-sign-out mr-3"></i> Odjavi se 
           </a>
         </div>
       </div>
