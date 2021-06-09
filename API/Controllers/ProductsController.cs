@@ -165,11 +165,11 @@ namespace API.Controllers
                 
                     var result = await _unitOfWork.Complete();
                 
-                    if (result <= 0) return BadRequest(new ApiResponse(400, "Problem adding photo product"));
+                    if (result <= 0) return BadRequest(new ApiResponse(400, "Problem pri dodavanju slike"));
                 }
                 else
                 {
-                    return BadRequest(new ApiResponse(400, "problem saving photo to disk"));
+                    return BadRequest(new ApiResponse(400, "Problem pri snimanju slike na disk"));
                 }
             }
             

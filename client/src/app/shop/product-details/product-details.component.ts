@@ -73,7 +73,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  // tslint:disable-next-line: typedef
   loadProduct() {
     // tslint:disable-next-line: deprecation
     this.shopService
@@ -81,6 +80,7 @@ export class ProductDetailsComponent implements OnInit {
       // tslint:disable-next-line: deprecation
       .subscribe(
         (product) => {
+          console.log(product);
           this.product = product;
           this.bcService.set('@productDetails', product.name);
           this.initializeGallery();

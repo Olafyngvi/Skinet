@@ -12,6 +12,7 @@ import { BrendoviComponent } from './brendovi/brendovi.component';
 import { SnizenoComponent } from './snizeno/snizeno.component';
 import { DnoComponent } from './dno/dno.component';
 import { FooterComponent } from './footer/footer.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FooterComponent } from './footer/footer.component';
     SnizenoComponent,
     DnoComponent,
     FooterComponent,
+    CarouselComponent,
   ],
   imports: [CommonModule, SharedModule, BrowserModule, RouterModule],
   exports: [HomeComponent],
