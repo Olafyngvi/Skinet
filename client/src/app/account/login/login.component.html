@@ -6,7 +6,7 @@
     <div *ngIf="!user">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="text-center mb-4">
-          <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+          <h1 class="h3 mb-3 font-weight-normal">PRIJAVA</h1>
         </div>
 
         <app-text-input
@@ -24,17 +24,17 @@
           class="btn btn-lg btn-primary btn-block"
           type="submit"
         >
-          Sign in
+          Prijavi se
         </button>
       </form>
       <hr />
       <div class="forma1" style="padding-left: 35%">
         <p style="text-decoration: solid">
           Nemaš račun!?
-          <a routerLink="/account/register" href="#"> Sign up</a>
+          <a routerLink="/account/register" href="#"> Registruj se</a>
         </p>
         <p style="text-decoration: solid">
-          <a routerLink="/account/forgotpassword" href="#">Zaboravljen password</a>
+          <a routerLink="/account/forgotpassword" href="#">Zaboravljena lozinka</a>
         </p>
       </div>
     </div>
@@ -48,7 +48,7 @@
           />
         </div>
         <p class="btn-text" (click)="signInWithGoogle()">
-          <b>Sign in with google</b>
+          <b>Koristi Google račun</b>
         </p>
       </div>
     </div>
@@ -92,7 +92,7 @@
       </form>
       <br />-->
       <button class="btn btn-lg btn-primary btn-block" (click)="signOut()">
-        Sign Out
+        Odjavi se
       </button>
     </div>
   </div>
