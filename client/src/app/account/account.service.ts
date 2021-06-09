@@ -11,6 +11,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { ExternalAuthDto } from '../shared/models/externalAuthDto';
 import { AuthResponseDto } from '../shared/models/authResponseDto ';
 import { AuthService } from 'angularx-social-login';
+import { ForgotPasswordDto } from '../shared/models/ForgotPasswordDto';
+import { ResetPasswordDto } from '../shared/models/ResetPasswordDto';
+import { LoggedResetPasswordDto } from '../shared/models/loggedResetPassword';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +32,7 @@ export class AccountService {
 
 
 
-  constructor(private authService: AuthService, private http: HttpClient, private router: Router, private _jwtHelper: JwtHelperService) {}
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
 
   // tslint:disable-next-line: typedef
   loadCurrentUser(token: string) {
@@ -62,6 +65,18 @@ export class AccountService {
         }
       })
     );
+  }
+
+  public forgotPassword = (body: ForgotPasswordDto) => {
+    return this.http.post(this.baseUrl + 'account/forgotpassword', body);
+  }
+
+  public resetPassword = (body: ResetPasswordDto) => {
+    return this.http.post(this.baseUrl + 'account/resetpassword', body);
+  }
+
+  public loggedResetPassword = (body: LoggedResetPasswordDto) => {
+    return this.http.post(this.baseUrl + 'account/loggedresetpassword', body);
   }
 
   public sendAuthStateChangeNotification = (isAuthenticated: boolean) => {
@@ -98,6 +113,13 @@ export class AccountService {
     this.currentUserSource.next(null);
     this.authService.signOut();
     this.router.navigateByUrl('/');
+  }
+  // tslint:disable-next-line: typedef
+  logoutPasswordReset() {
+    localStorage.removeItem('token');
+    this.currentUserSource.next(null);
+    this.authService.signOut();
+    this.router.navigateByUrl('account/login');
   }
 
   // tslint:disable-next-line: typedef

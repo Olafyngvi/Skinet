@@ -11,11 +11,11 @@
 
         <app-text-input
           formControlName="email"
-          [label]="'Email address'"
+          [label]="'E-mail adresa'"
         ></app-text-input>
         <app-text-input
           formControlName="password"
-          [label]="'Password'"
+          [label]="'Lozinka'"
           [type]="'password'"
         ></app-text-input>
 
@@ -28,10 +28,13 @@
         </button>
       </form>
       <hr />
-      <div class="forma1" style="padding-left: 25%">
+      <div class="forma1" style="padding-left: 35%">
         <p style="text-decoration: solid">
-          Don't have an account !
+          Nemaš račun!?
           <a routerLink="/account/register" href="#"> Sign up</a>
+        </p>
+        <p style="text-decoration: solid">
+          <a routerLink="/account/forgotpassword" href="#">Zaboravljen password</a>
         </p>
       </div>
     </div>

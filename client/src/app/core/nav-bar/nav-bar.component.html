@@ -4,7 +4,7 @@
   <nav class="navbar navbar-inverse" style="font-size: larger">
     <div class="container-fluid">
       <div class="navbar-header">
-        <img class="navbar-brand" 
+        <img class="navbar-brand"
           src="/assets/images/Drinex_logo.png"
           style="max-height: 70px"
           alt="logo"
@@ -31,7 +31,7 @@
           </div>
         </a>
            <ng-container *ngIf="(currentUser$ | async) === null">
-          <a 
+          <a
             class="login"
             routerLink="/account/login"
             href="#"> <i class="fa fa-user"></i>Login</a>
@@ -39,13 +39,13 @@
             class="register"
             routerLink="/account/register"
             href="#"> <i class="fa fa-key"></i> Sign up</a>
-          
-           </ng-container> 
+
+           </ng-container>
            </li>
         </ul>
-    
+
     </div>
-   
+
     <a
       *ngIf="isAdmin$ | async"
       class="p-2"
@@ -58,18 +58,24 @@
 
 
   <div class="d-flex align-items-center">
-  
+
     <ng-container *ngIf="currentUser$ | async as user">
       <div class="btn-group ml-4" dropdown>
         <a class="dropdown-toggle" style="cursor: pointer" dropdownToggle>
           <strong>Welcome {{ (currentUser$ | async).displayName}}</strong>
         </a>
-        
+
         <div
           class="dropdown-menu"
           style="cursor: pointer"
           *dropdownMenu
         >
+          <a
+            routerLink="/account/loggedresetpassword/{{(currentUser$ | async).email}}"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+            <i class="fa fa-unlock mr-3"></i> Reset Password
+          </a>
           <a
             routerLink="/basket"
             class="dropdown-item d-flex align-items-center py-2"
@@ -94,7 +100,14 @@
             routerLink="/users"
             class="dropdown-item d-flex align-items-center py-2"
           >
-          <i class="fa fa-user mr-3"></i>View all users
+          <i class="fa fa-users mr-3"></i>View all users
+          </a>
+          <a
+            *ngIf="isAdmin$ | async"
+            routerLink="admin/carousel"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+          <i class="fa fa-image mr-3"></i>Carousel
           </a>
           <div class="dropdown-divider"></div>
           <a

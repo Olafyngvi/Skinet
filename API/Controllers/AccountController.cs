@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Dtos;
@@ -19,10 +15,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Core.Entities;
+using System;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace API.Controllers
 {
-    [DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
     public class AccountController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
@@ -31,10 +29,12 @@ namespace API.Controllers
         private readonly IMapper _mapper;
         private readonly IUsersRepository _usersRepository;
         private readonly JwtHandler _jwtHandler;
+        private readonly IMailService _mailService;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        ITokenService tokenService, IMapper mapper, IUsersRepository usersRepository, JwtHandler jwtHandler)
+        ITokenService tokenService, IMapper mapper, IUsersRepository usersRepository, JwtHandler jwtHandler, IMailService mailService)
         {
+            _mailService = mailService;
             _usersRepository = usersRepository;
             _mapper = mapper;
             _tokenService = tokenService;
@@ -131,11 +131,14 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
 
-            if (user == null) return Unauthorized(new ApiResponse(401));
+            if (user == null) return Unauthorized(new { Errors = "Pogrešno korisničko ime ili lozinka" });
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            if (!result.Succeeded) return Unauthorized(new ApiResponse(401));
+            if (!result.Succeeded)
+            {
+				return Unauthorized(new { Errors = "Pogrešno korisničko ime ili lozinka" });
+			}
 
             return new UserDto
             {
@@ -186,7 +189,7 @@ namespace API.Controllers
         {
             if (CheckEmailExistsAsync(registerDto.Email).Result.Value)
             {
-                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" } });
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email adresa je zauzeta" } });
             }
 
             var user = new AppUser
@@ -198,18 +201,88 @@ namespace API.Controllers
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            if (!result.Succeeded) return BadRequest(new ApiResponse(400));
-
+            if (!result.Succeeded) return BadRequest();
+            
             var roleAddResult = await _userManager.AddToRoleAsync(user, "Member");
 
-        return new UserDto
-        {
-            DisplayName = user.DisplayName,
-            Token = await _tokenService.CreateToken(user),
-            Email = user.Email
-        };
+            if (!roleAddResult.Succeeded) return BadRequest("Failed to add to role");
+
+            return new UserDto
+            {
+                DisplayName = user.DisplayName,
+                Token = await _tokenService.CreateToken(user),
+                Email = user.Email
+            };
         }
+
+        [HttpPost("ForgotPassword")]
+		public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest();
+
+			var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
+			if (user == null)
+				return BadRequest("Invalid Request");
+
+			var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+			var param = new Dictionary<string, string>
+			{
+				{"token", token },
+				{"email", forgotPasswordDto.Email }
+			};
+
+			var callback = QueryHelpers.AddQueryString(forgotPasswordDto.ClientURI, param);
+
+			var message = new Message(new string[] { forgotPasswordDto.Email }, "Reset password token", callback, null);
+			await _mailService.SendPasswordResetMailAsync(message);
+
+			return Ok();
+		}
+
+        [HttpPost("ResetPassword")]
+		public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest();
+
+			var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+			if (user == null)
+				return BadRequest("Invalid Request");
+			var resetPassResult = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.Password);
+			if (!resetPassResult.Succeeded)
+			{
+				var errors = resetPassResult.Errors.Select(e => e.Description);
+
+				return BadRequest(new { Errors = errors });
+			}
+
+			await _userManager.SetLockoutEndDateAsync(user, new DateTime(2000, 1, 1));
+
+			return Ok();
+		}
+
+        [HttpPost("LoggedResetPassword")]
+		public async Task<IActionResult> LoggedResetPassword([FromBody] LoggedResetPasswordDto resetPasswordDto)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest();
+
+			var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+			if (user == null)
+				return BadRequest("Invalid Request");
+			var resetPassResult = await _userManager.ChangePasswordAsync(user, resetPasswordDto.Password, resetPasswordDto.NewPassword);
+			if (!resetPassResult.Succeeded)
+			{
+				var errors = resetPassResult.Errors.Select(e => e.Description);
+
+				return BadRequest(new { Errors = errors });
+			}
+
+			await _userManager.SetLockoutEndDateAsync(user, new DateTime(2000, 1, 1));
+
+			return Ok();
+		}
+
     }
 }
-
-

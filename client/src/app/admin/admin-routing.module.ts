@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { CarouselsComponent } from './carousels/carousels.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     component: EditProductComponent,
     data: { breadcrumb: 'Edit' },
   },
+  {path: 'carousel', component: CarouselsComponent}
 ];
 
 @NgModule({

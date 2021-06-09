@@ -1,4 +1,5 @@
 using System.Text;
+using API.Helpers;
 using Core.Entities.Identity;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,10 +15,18 @@ namespace API.Extensions
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, 
             IConfiguration config)
         {
-            var builder = services.AddIdentityCore<AppUser>();
+            var builder = services.AddIdentityCore<AppUser>(o => {
+                o.Password.RequireDigit = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 6;
+            });
 
             builder = new IdentityBuilder(builder.UserType, typeof(AppRole), builder.Services);
             builder.AddEntityFrameworkStores<AppIdentityDbContext>();
+            builder.AddErrorDescriber<LocalizedIdentityErrorDescriber>();
+            builder.AddDefaultTokenProviders();
             builder.AddSignInManager<SignInManager<AppUser>>();
             builder.AddRoleValidator<RoleValidator<AppRole>>();
             builder.AddRoleManager<RoleManager<AppRole>>();
