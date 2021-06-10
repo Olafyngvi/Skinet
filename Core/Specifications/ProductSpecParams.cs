@@ -16,6 +16,7 @@ namespace Core.Specifications
         public int? TypeId { get; set; }
         public string Sort { get; set; }
         public bool? Izdvojen { get; set; }
+        public bool? Novo { get; set; }
         private string _search;
         public string Search
         {

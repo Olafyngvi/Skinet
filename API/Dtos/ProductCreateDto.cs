@@ -19,6 +19,7 @@ namespace API.Dtos
               ErrorMessage = "Price must be a decimal (e.g 20.30)")]
           public decimal OldPrice { get; set; }
           public bool Izdvojen { get; set; }
+          public bool Novo { get; set; }
 
           public string PictureUrl { get; set; }
 

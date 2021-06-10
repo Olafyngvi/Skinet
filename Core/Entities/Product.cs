@@ -11,6 +11,7 @@ namespace Core.Entities
         public decimal OldPrice { get; set; }
         public bool? Izdvojen { get; set; } = null;
         public string Sifra { get; set; } = "";
+        public bool? Novo { get; set; } = null; 
         public int Stock { get; set; } = 0;
         public ProductType ProductType { get; set; }
         public int ProductTypeId { get; set; }

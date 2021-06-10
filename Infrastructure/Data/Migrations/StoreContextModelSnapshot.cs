@@ -162,6 +162,9 @@ namespace Infrastructure.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<bool?>("Novo")
+                        .HasColumnType("boolean");
+
                     b.Property<decimal>("OldPrice")
                         .HasColumnType("decimal(18,2)");
 

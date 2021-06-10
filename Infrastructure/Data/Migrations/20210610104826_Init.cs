@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Infrastructure.Data.Migrations
 {
-    public partial class Pezo : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -106,6 +106,7 @@ namespace Infrastructure.Data.Migrations
                     OldPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Izdvojen = table.Column<bool>(type: "boolean", nullable: true),
                     Sifra = table.Column<string>(type: "text", nullable: true),
+                    Novo = table.Column<bool>(type: "boolean", nullable: true),
                     Stock = table.Column<int>(type: "integer", nullable: false),
                     ProductTypeId = table.Column<int>(type: "integer", nullable: false),
                     ProductBrandId = table.Column<int>(type: "integer", nullable: false)
