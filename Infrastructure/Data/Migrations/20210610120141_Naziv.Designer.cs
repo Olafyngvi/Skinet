@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210610104826_Init")]
-    partial class Init
+    [Migration("20210610120141_Naziv")]
+    partial class Naziv
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
