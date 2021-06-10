@@ -11,9 +11,9 @@ import { HomeComponent } from './home/home.component';
 import { ServisComponent } from './servis/servis.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, data: { breadcrumb: 'Home' } },
-  { path: 'contact', component: ContactComponent, data: { breadcrumb: 'Contact' } },
-  { path: 'successful', component: SuccessfulComponent, data: { breadcrumb: 'Thank you' } },
+  { path: '', component: HomeComponent, data: { breadcrumb: 'Početna' } },
+  { path: 'contact', component: ContactComponent, data: { breadcrumb: 'Kontakt' } },
+  { path: 'successful', component: SuccessfulComponent, data: { breadcrumb: 'Hvala Vam' } },
   { path: 'servis', component: ServisComponent, data: { breadcrumb: 'Servis' } },
   {
     path: 'test-error',
@@ -34,13 +34,13 @@ const routes: Routes = [
     path: 'shop',
     loadChildren: () =>
       import('./shop/shop.module').then((mod) => mod.ShopModule),
-    data: { breadcrumb: 'Shop' },
+    data: { breadcrumb: 'Prodavnica' },
   },
   {
     path: 'basket',
     loadChildren: () =>
       import('./basket/basket.module').then((mod) => mod.BasketModule),
-    data: { breadcrumb: 'Basket' },
+    data: { breadcrumb: 'Korpa' },
   },
   {
     path: 'checkout',
@@ -54,14 +54,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('./orders/orders.module').then((mod) => mod.OrdersModule),
-    data: { breadcrumb: 'Orders' },
+    data: { breadcrumb: 'Narudžbe' },
   },
   {
     path: 'users',
     canActivate: [AuthGuard, AdminGuard],
     loadChildren: () =>
       import('./users/users.module').then((mod) => mod.UsersModule),
-    data: { breadcrumb: 'Users' },
+    data: { breadcrumb: 'Korisnici' },
   },
   {
     path: 'account',

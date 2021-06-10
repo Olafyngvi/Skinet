@@ -20,7 +20,7 @@ export class CheckoutAddressComponent implements OnInit {
   // tslint:disable-next-line: typedef
   saveUserAddress() {
     this.accountService.updateUserAddress(this.checkoutForm.get('addressForm').value).subscribe((address: IAddress) => {
-      this.toastr.success('Address saved');
+      this.toastr.success('Adresa spremljena');
       this.checkoutForm.get('addressForm').reset(address);
     }, error => {
       this.toastr.error(error.message);
