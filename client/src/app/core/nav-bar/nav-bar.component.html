@@ -26,9 +26,9 @@
       <ul class="nav navbar-nav navbar-right">
         <li id="ikone"> <a routerLink="/basket" class="position-relative">
           <i class="fa fa-shopping-cart fa-2x"></i>
-          <div *ngIf="basket$ | async as basket">
-             {{ basket.items.length }} 
-          </div>
+          <i class="cart-no" *ngIf="basket$ | async as basket">
+             {{ basket.items.length }}
+          </i>
         </a>
            <ng-container *ngIf="(currentUser$ | async) === null">
           <a
