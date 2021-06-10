@@ -24,11 +24,11 @@
         <a class="p-2" routerLink="/contact" routerLinkActive="active">Kontakt</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li id="ikone"><a routerLink="/basket" >
-          <i class="fa fa-shopping-cart fa-2x "></i>
-          <i *ngIf="basket$ | async as basket">
-            <i class="cart-no"> {{ basket.items.length }} </i>
-          </i>
+        <li id="ikone"> <a routerLink="/basket" class="position-relative">
+          <i class="fa fa-shopping-cart fa-2x"></i>
+          <div *ngIf="basket$ | async as basket">
+             {{ basket.items.length }} 
+          </div>
         </a>
            <ng-container *ngIf="(currentUser$ | async) === null">
           <a

@@ -10,7 +10,14 @@ namespace Core.Entities
     public class Message
     {
         public List<MailboxAddress> To { get; set; }
-        public string Subject { get; set; }
+        public Message(string subject, string content, IFormFileCollection attachments) 
+        {
+            this.Subject = subject;
+                this.Content = content;
+                this.Attachments = attachments;
+               
+        }
+                public string Subject { get; set; }
         public string Content { get; set; }
 
         public IFormFileCollection Attachments { get; set; }
