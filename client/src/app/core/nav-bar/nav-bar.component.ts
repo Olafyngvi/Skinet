@@ -34,7 +34,7 @@ export class NavBarComponent implements OnInit {
 
   // tslint:disable-next-line: typedef
   logout() {
-    this.cds.confirm('Logout', 'Jeste li sigurni da se želite odjaviti ?', 'Odjavi se', 'Odustani')
+    this.cds.confirm('Odjava', 'Jeste li sigurni da se želite odjaviti ?', 'Odjavi se', 'Odustani')
     .then(confirmed => {
       if (confirmed) {
         this.accountService.logout();

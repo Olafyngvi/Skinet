@@ -17,7 +17,7 @@ const routes: Routes = [
     component: EditProductComponent,
     data: { breadcrumb: 'Edit' },
   },
-  {path: 'carousel', component: CarouselsComponent}
+  {path: 'carousel', component: CarouselsComponent, data: { breadcrumb: 'Carousel' }}
 ];
 
 @NgModule({

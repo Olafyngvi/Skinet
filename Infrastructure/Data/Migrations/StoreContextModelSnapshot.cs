@@ -177,6 +177,9 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("ProductTypeId")
                         .HasColumnType("integer");
 
+                    b.Property<bool?>("Sale")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Sifra")
                         .HasColumnType("text");
 

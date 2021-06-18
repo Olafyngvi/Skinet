@@ -38,7 +38,7 @@ export class OrdersComponent implements OnInit {
         (orders: IOrder[]) => {
           this.orders = orders;
           this.ordersCount = orders.length;
-          this.breadcrumbService.set('@Orders', 'Your orders');
+          this.breadcrumbService.set('@Orders', 'Vaše narudžbe');
         },
         (error) => {
           console.log(error);
@@ -50,7 +50,7 @@ export class OrdersComponent implements OnInit {
         (orders: IOrder[]) => {
           this.orders = orders;
           this.ordersCount = orders.length;
-          this.breadcrumbService.set('@Orders', 'Orders of ' + this.name);
+          this.breadcrumbService.set('@Orders', 'Narudžbe od ' + this.name);
         },
         (error) => {
           console.log(error);

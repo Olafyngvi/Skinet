@@ -63,6 +63,11 @@ export class AdminService {
   }
 
   // tslint:disable-next-line: typedef
+  new(product: IProduct, id: number) {
+    return this.http.put(this.baseUrl + 'products/new/' + id, product);
+  }
+
+  // tslint:disable-next-line: typedef
   deleteProduct(id: number) {
     return this.http.delete(this.baseUrl + 'products/' + id);
   }

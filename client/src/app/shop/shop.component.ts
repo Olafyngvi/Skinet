@@ -1,17 +1,20 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IBrand } from '../shared/models/brand';
 import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
 import { ShopService } from './shop.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, AfterViewInit {
   @ViewChild('search', {static: false}) searchTerm: ElementRef;
+  search: string;
+  type: string;
   products: IProduct[];
   brands: IBrand[];
   types: IType[];
@@ -23,20 +26,38 @@ export class ShopComponent implements OnInit {
     {name: 'Cijena: viša prema nižoj', value: 'priceDesc'},
   ];
 
-  constructor(private shopService: ShopService) {
+  constructor(private shopService: ShopService,
+              private route: ActivatedRoute) {
     this.shopParams = this.shopService.getShopParams();
   }
 
   ngOnInit(): void {
+    this.search = this.route.snapshot.paramMap.get('search');
+    this.type = this.route.snapshot.paramMap.get('type');
+    const params = this.shopService.getShopParams();
+    if (this.search !== null) {
+      params.search = this.search;
+      params.pageNumber = 1;
+    }
+    params.typeId = +this.type;
+    this.shopService.setShopParams(params);
     this.getProducts(true);
     this.getBrands();
     this.getTypes();
   }
 
   // tslint:disable-next-line: typedef
+  ngAfterViewInit() {
+    if (this.search !== null) {
+      this.searchTerm.nativeElement.value = this.search;
+    }
+  }
+
+  // tslint:disable-next-line: typedef
   getProducts(useCache = false) {
     // tslint:disable-next-line: deprecation
     this.shopService.getProducts(useCache).subscribe(response => {
+      console.log(response);
       this.products = response.data;
       this.totalCount = response.count;
     }, error => {

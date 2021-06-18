@@ -12,8 +12,8 @@
             <h6 class="text-uppercase">{{product.name}}</h6>
         </a>
         <div class="d-flex justify-content-between">
-          <span *ngIf="product.oldPrice !== 0" class="mb-2 stara">{{product.oldPrice | currency}}</span>
-          <span class="mb-2">{{product.price | currency}}</span>
+          <span *ngIf="product.oldPrice !== 0" class="mb-2 stara">{{product.oldPrice | currency: 'KM':'symbol':undefined:'fr'}}</span>
+          <span class="mb-2">{{product.price | currency: 'KM':'symbol':undefined:'fr'}}</span>
         </div>
 
     </div>

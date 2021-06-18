@@ -98,7 +98,14 @@ namespace API.Controllers
             var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
 
             _mapper.Map(productToUpdate, product);
-
+            if (productToUpdate.OldPrice != 0)
+            {
+                product.Sale = true;
+            }
+            else
+            {
+                product.Sale = false;
+            }
             _unitOfWork.Repository<Product>().Update(product);
 
             var result = await _unitOfWork.Complete();
@@ -114,7 +121,7 @@ namespace API.Controllers
         {
             var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
             product.Izdvojen = productToUpdate.Izdvojen;
-
+            
             _unitOfWork.Repository<Product>().Update(product);
 
             var result = await _unitOfWork.Complete();

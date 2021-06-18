@@ -57,7 +57,7 @@ export class OrderDetailedComponent implements OnInit {
               this.order = order;
               this.breadcrumbService.set(
                 '@OrderDetailed',
-                `Order# ${order.id} - ${order.status}   -   ${order.buyerEmail}`
+                `Narudžba# ${order.id} - ${order.status}   -   ${order.buyerEmail}`
               );
             },
             (error) => {

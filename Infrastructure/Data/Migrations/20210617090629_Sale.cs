@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Infrastructure.Data.Migrations
 {
-    public partial class Naziv : Migration
+    public partial class Sale : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -107,6 +107,7 @@ namespace Infrastructure.Data.Migrations
                     Izdvojen = table.Column<bool>(type: "boolean", nullable: true),
                     Sifra = table.Column<string>(type: "text", nullable: true),
                     Novo = table.Column<bool>(type: "boolean", nullable: true),
+                    Sale = table.Column<bool>(type: "boolean", nullable: true),
                     Stock = table.Column<int>(type: "integer", nullable: false),
                     ProductTypeId = table.Column<int>(type: "integer", nullable: false),
                     ProductBrandId = table.Column<int>(type: "integer", nullable: false)

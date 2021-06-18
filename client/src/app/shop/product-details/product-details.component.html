@@ -11,7 +11,7 @@
       <h3>{{ product.name }}</h3>
       <p *ngIf="product.stock > 0" style="font-size: 1em;color: green;">Dostupno</p>
       <p *ngIf="product.stock === 0" style="font-size: 1em;color: red;">Nije dostupno</p>
-      <p style="font-size: 2em">{{ product.price | currency }}</p>
+      <p style="font-size: 2em">{{ product.price | currency: 'KM':'symbol':undefined:'fr' }}</p>
       <div class="d-flex justify-content-start align-items-center">
         <i
           (click)="decrementQuantity()"

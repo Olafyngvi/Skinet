@@ -17,6 +17,7 @@ namespace Core.Specifications
         public string Sort { get; set; }
         public bool? Izdvojen { get; set; }
         public bool? Novo { get; set; }
+        public bool? Sale { get; set; }
         private string _search;
         public string Search
         {

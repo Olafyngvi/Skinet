@@ -10,6 +10,8 @@ export interface IProduct {
   productBrand: string;
   stock: number;
   izdvojen: boolean;
+  novo: boolean;
+  sale: boolean;
   photos: IPhoto[];
 }
 

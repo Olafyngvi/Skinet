@@ -10,6 +10,7 @@ namespace API.Dtos
         public decimal Price { get; set; }
         public bool Izdvojen { get; set; }
         public bool Novo { get; set; }
+        public bool Sale { get; set; }
         public string Sifra { get; set; }
         public decimal OldPrice { get; set; }
         public string PictureUrl { get; set; }

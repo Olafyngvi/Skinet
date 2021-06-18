@@ -32,7 +32,7 @@
       </div>
       <br>
       <div *ngIf="isAdmin$ | async">
-        <button *ngIf="order.status === 'Pending'" (click)="setShipped(order.id)" class="btn btn-primary">Postavi kao isporučeno</button>
+        <button *ngIf="order.status === 'Pending'" (click)="setShipped(order.id)" class="btn btn-primary">Pošalji</button>
       </div>
     </div>
     <div class="col-4">

@@ -17,10 +17,10 @@ export class OrdersAdminComponent implements OnInit {
   orderParams: OrderParams;
   totalCount: number;
   statusOptions = [
-    {name: 'All', value: ''},
-    {name: 'Pending', value: 'Pending'},
-    {name: 'Shipped', value: 'Shipped'},
-    {name: 'Delivered', value: 'Delivered'}
+    {name: 'Sve', value: ''},
+    {name: 'U pripremi', value: 'Pending'},
+    {name: 'Poslana', value: 'Shipped'},
+    {name: 'Isporučena', value: 'Delivered'}
   ];
   constructor(private ordersService: OrdersService,
               private breadCrumbs: BreadcrumbService) {
@@ -28,7 +28,7 @@ export class OrdersAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.breadCrumbs.set('@OrdersAdmin', 'All Orders');
+    this.breadCrumbs.set('@OrdersAdmin', 'Sve narudžbe');
     this.getOrders();
   }
 

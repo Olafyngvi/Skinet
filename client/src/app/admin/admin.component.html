@@ -1,5 +1,5 @@
 <section class="admin-page" *ngIf="products">
-  <div class="container">
+  <div class="container/fluid">
     <div class="row">
       <div class="col-lg-3">
         <ng-container *ngIf="types && brands">
@@ -71,10 +71,16 @@
                   <div class="p-2 px-3 text-uppercase">Izdvojen</div>
                 </th>
                 <th scope="col">
-                  <div class="p-2 px-3 text-uppercase">Izmjeni</div>
+                  <div class="p-2 px-3 text-uppercase">Novo</div>
                 </th>
                 <th scope="col">
-                  <div class="p-2 px-3 text-uppercase">Obriši</div>
+                  <div class="p-2 px-3 text-uppercase">Akcija</div>
+                </th>
+                <th scope="col">
+                  <div class="p-2 px-3 text-uppercase">Izmjena</div>
+                </th>
+                <th scope="col">
+                  <div class="p-2 px-3 text-uppercase">Brisanje</div>
                 </th>
               </tr>
             </thead>
@@ -96,8 +102,10 @@
                 <th class="align-middle">
                   <h5>{{ product.name }}</h5>
                 </th>
-                <td class="align-middle">{{ product.price | currency }}</td>
-                <td class="align-middle"><input class="ml-4" (change)="onChange(product)" [(ngModel)]="product.izdvojen" type="checkbox" value="{{product.izdvojen}}"></td>
+                <td class="align-middle">{{ product.price | currency: 'KM':'symbol':undefined:'fr' }}</td>
+                <td class="align-middle"><input class="ml-4" (change)="izdvoji(product)" [(ngModel)]="product.izdvojen" type="checkbox" value="{{product.izdvojen}}"></td>
+                <td class="align-middle"><input class="ml-4" (change)="new(product)" [(ngModel)]="product.novo" type="checkbox" value="{{product.novo}}"></td>
+                <td class="align-middle"><input class="ml-4" (change)="sale(product)" [(ngModel)]="product.sale" type="checkbox" value="{{product.sale}}"></td>
                 <td class="align-middle">
                   <button
                     [routerLink]="['edit', product.id]"

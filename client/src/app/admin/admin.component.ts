@@ -153,9 +153,21 @@ export class AdminComponent implements OnInit {
   }
 
   // tslint:disable-next-line: typedef
-  onChange(product: IProduct) {
+  izdvoji(product: IProduct) {
     // tslint:disable-next-line: deprecation
     this.adminService.izdvoji(product, product.id).subscribe(() => {
+      console.log(product);
+    });
+  }
+  new(product: IProduct) {
+    // tslint:disable-next-line: deprecation
+    this.adminService.new(product, product.id).subscribe(() => {
+      console.log(product);
+    });
+  }
+  sale(product: IProduct) {
+    // tslint:disable-next-line: deprecation
+    this.adminService.new(product, product.id).subscribe(() => {
       console.log(product);
     });
   }

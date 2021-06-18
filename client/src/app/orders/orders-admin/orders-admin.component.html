@@ -17,9 +17,9 @@
               [pageSize]="orderParams.pageSize"></app-paging-header>
             </div>
             <div class="form-inline mt-2" *ngIf="orders">
-                <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Search">
+                <input (keyup.enter)="onSearch()" type="text" class="form-control mr-2" #search placeholder="Pretraga">
                 <button (click)="onSearch()" class="btn btn-outline-primary my-2">Pretraži</button>
-                <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Ponovno postavi</button>
+                <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Poništi filtere</button>
             </div>
           </div>
 
@@ -38,7 +38,7 @@
                       <tr *ngFor="let order of orders" routerLink="/orders/{{order.id}}">
                           <th># {{order.id}}</th>
                           <td>{{order.orderDate | date: 'medium'}}</td>
-                          <td>{{order.total | currency}}</td>
+                          <td>{{order.total | currency: 'KM':'symbol':undefined:'fr'}}</td>
                           <td><strong>{{order.status}}</strong></td>
                       </tr>
                   </tbody>

@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210610120141_Naziv")]
-    partial class Naziv
+    [Migration("20210617090629_Sale")]
+    partial class Sale
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,6 +178,9 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<int>("ProductTypeId")
                         .HasColumnType("integer");
+
+                    b.Property<bool?>("Sale")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Sifra")
                         .HasColumnType("text");
