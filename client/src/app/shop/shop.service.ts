@@ -42,6 +42,18 @@ export class ShopService {
       params = params.append('brandId', this.shopParams.brandId.toString());
     }
 
+    if (this.shopParams.akcija !== null) {
+      params = params.append('Sale', this.shopParams.akcija.toString());
+    }
+
+    if (this.shopParams.novo !== null) {
+      params = params.append('Novo', this.shopParams.novo.toString());
+    }
+
+    if (this.shopParams.izdvojen !== null) {
+      params = params.append('Izdvojen', this.shopParams.izdvojen.toString());
+    }
+
     if (this.shopParams.typeId !== 0) {
       params = params.append('typeId', this.shopParams.typeId.toString());
     }
@@ -112,5 +124,53 @@ export class ShopService {
         return response;
       })
     );
+  }
+  // tslint:disable-next-line: typedef
+  resetShopParams() {
+    this.shopParams = new ShopParams();
+  }
+
+  // tslint:disable-next-line: typedef
+  getSaleProducts(pageSize: number) {
+    let params = new HttpParams();
+    params = params.append('Sale', 'true');
+    params = params.append('pageSize', pageSize.toString());
+    return this.http.get<IPagination>(this.baseUrl + 'products', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          this.productCache.set(Object.values(this.shopParams).join('-'), response.body.data);
+          this.pagination = response.body;
+          return this.pagination;
+        })
+      );
+  }
+  // tslint:disable-next-line: typedef
+  getNewProducts(pageSize: number) {
+    let params = new HttpParams();
+    params = params.append('Novo', 'true');
+    params = params.append('pageSize', pageSize.toString());
+    return this.http.get<IPagination>(this.baseUrl + 'products', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          this.productCache.set(Object.values(this.shopParams).join('-'), response.body.data);
+          this.pagination = response.body;
+          return this.pagination;
+        })
+      );
+  }
+
+  // tslint:disable-next-line: typedef
+  getIzdvojenProducts(pageSize: number) {
+    let params = new HttpParams();
+    params = params.append('Izdvojen', 'true');
+    params = params.append('pageSize', pageSize.toString());
+    return this.http.get<IPagination>(this.baseUrl + 'products', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          this.productCache.set(Object.values(this.shopParams).join('-'), response.body.data);
+          this.pagination = response.body;
+          return this.pagination;
+        })
+      );
   }
 }

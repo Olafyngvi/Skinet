@@ -46,9 +46,9 @@ img{
   max-height: 350px;
   height: auto;
   max-width: 450px;
-  width: auto; 
-  object-fit: cover;
-  
+  width: auto;
+
+
 }
 
 
@@ -67,7 +67,7 @@ button {
     margin-top: -80px;
     margin-bottom: 2%;
   }
-  
+
   button:hover {
     opacity: 0.7;
   }
@@ -77,11 +77,11 @@ button {
       max-height: 300px;
       height: auto;
       max-width: 350px;
-      width: auto; 
+      width: auto;
       object-fit: cover;
       background-color: white;
     }
-   
+
       #cijena{
         margin-top:5%;
         margin-bottom: 5%;
@@ -103,12 +103,12 @@ button {
       }
     }
   // Extra small devices (portrait phones, less than 477px)
-  @media (min-width: 437px) and(max-width: 477.98px) { 
+  @media (min-width: 437px) and(max-width: 477.98px) {
     img{
       max-height: 350px;
       height: auto;
       max-width: 400px;
-      width: auto; 
+      width: auto;
       object-fit: cover;
       background-color: white;
     }
@@ -131,7 +131,7 @@ button {
     max-height: 350px;
     height: auto;
     max-width: 400px;
-    width: auto; 
+    width: auto;
     object-fit: fill;
     background-color: white;
   }
@@ -144,7 +144,7 @@ button {
     max-height: 350px;
     height: auto;
     max-width: 400px;
-    width: auto; 
+    width: auto;
     object-fit: cover;
     background-color: white;
   }
@@ -168,5 +168,5 @@ button {
   h5{
     margin-top: 10px;
   }
- 
+
  }

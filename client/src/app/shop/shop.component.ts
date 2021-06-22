@@ -32,6 +32,7 @@ export class ShopComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.search = this.route.snapshot.paramMap.get('search');
     this.type = this.route.snapshot.paramMap.get('type');
     const params = this.shopService.getShopParams();
@@ -41,7 +42,7 @@ export class ShopComponent implements OnInit, AfterViewInit {
     }
     params.typeId = +this.type;
     this.shopService.setShopParams(params);
-    this.getProducts(true);
+    this.getProducts(false);
     this.getBrands();
     this.getTypes();
   }
@@ -52,7 +53,29 @@ export class ShopComponent implements OnInit, AfterViewInit {
       this.searchTerm.nativeElement.value = this.search;
     }
   }
+  // tslint:disable-next-line: typedef
+  onIzdvojenSelected() {
+    const params = this.shopService.getShopParams();
+    if (params.izdvojen !== null) {
+      params.izdvojen = null;
+    } else {
+      params.izdvojen = true;
+    }
+    this.shopService.setShopParams(params);
+    this.getProducts();
+  }
 
+  // tslint:disable-next-line: typedef
+  onNovoSelected() {
+    const params = this.shopService.getShopParams();
+    if (params.novo !== null) {
+      params.novo = null;
+    } else {
+      params.novo = true;
+    }
+    this.shopService.setShopParams(params);
+    this.getProducts();
+  }
   // tslint:disable-next-line: typedef
   getProducts(useCache = false) {
     // tslint:disable-next-line: deprecation
@@ -63,6 +86,18 @@ export class ShopComponent implements OnInit, AfterViewInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  // tslint:disable-next-line: typedef
+  onAkcijaSelected() {
+    const params = this.shopService.getShopParams();
+    if (params.akcija !== null) {
+      params.akcija = null;
+    } else {
+      params.akcija = true;
+    }
+    this.shopService.setShopParams(params);
+    this.getProducts();
   }
 
   // tslint:disable-next-line: typedef
