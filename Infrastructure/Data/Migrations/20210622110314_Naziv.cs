@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Infrastructure.Data.Migrations
 {
-    public partial class Sale : Migration
+    public partial class Naziv : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
