@@ -39,6 +39,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
+        [DisableRequestSizeLimit] 
         public async Task<ActionResult> AddCarouselPhoto([FromForm] ProductPhotoDto photoDto)
         {
             if (photoDto.Photo.Length > 0)

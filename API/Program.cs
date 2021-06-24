@@ -45,7 +45,14 @@ namespace API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().UseHttpSys(options =>
+                    {
+                        options.MaxRequestBodySize = null;
+                    });
+                    webBuilder.UseKestrel(options =>
+                        {
+                            options.Limits.MaxRequestBodySize = null;
+                        });
                 });
     }
 }
